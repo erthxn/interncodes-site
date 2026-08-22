@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Majek Ay | erthxn | Earth Intern — Community Architect</title>
+<meta name="description" content="Majek Ay, also known as erthxn and Earth Intern, is a community architect specializing in Telegram and Discord community design.">
+
+<!-- Person schema: tells Google/AI crawlers exactly who this is and links every alias together -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Majek Ay",
+  "alternateName": ["erthxn", "Earth Intern", "Intern", "Interncode"],
+  "url": "https://interncodes.xyz",
+  "jobTitle": "Community Architect",
+  "description": "Majek Ay is a community architect who designs and moderates Telegram and Discord communities for Web3 projects. Currently moderating SpinMi's Telegram community.",
+  "sameAs": [
+    "https://x.com/erthxn",
+    "https://t.me/erthxn",
+    "http://discordapp.com/users/1383754286558875678"
+  ]
+}
+</script>
+
+<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --periwinkle-deep: #5D6FDE;
+    --periwinkle-mid: #8A8FE8;
+    --lavender-light: #D6D9F7;
+    --lavender-bottom: #9C90DE;
+    --ink: #1B1B2E;
+    --gray: #6B6B7D;
+    --line: rgba(20,20,30,0.08);
+    --white-line: rgba(255,255,255,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* solid background-color is the fallback that shows during iOS/Android
+     overscroll bounce — without it you get a flash of browser-default white */
+  html {
+    min-height: 100%;
+    background-color: var(--lavender-bottom);
+    background-image:
+      radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 48%),
+      linear-gradient(180deg, var(--periwinkle-deep) 0%, var(--periwinkle-mid) 28%, var(--lavender-light) 55%, var(--lavender-bottom) 82%, #8B7FD1 100%);
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  html, body {
+    overscroll-behavior-y: none;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    background: transparent;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ===== AMBIENT PARTICLES (SVG, not emoji) ===== */
+  .leaf-field {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .leaf {
+    position: absolute;
+    top: -60px;
+    opacity: 0.5;
+    animation-name: leaf-fall, leaf-sway, leaf-rotate;
+    animation-timing-function: linear, ease-in-out, linear;
+    animation-iteration-count: infinite, infinite, infinite;
+  }
+  .leaf svg { display: block; }
+  @keyframes leaf-fall {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(112vh); }
+  }
+  @keyframes leaf-sway {
+    0%, 100% { margin-left: 0px; }
+    50% { margin-left: 30px; }
+  }
+  @keyframes leaf-rotate {
+    from { rotate: 0deg; }
+    to { rotate: 360deg; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .leaf { animation: none; display: none; }
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .stage {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px 60px;
+    text-align: center;
+  }
+
+  dotlottie-wc {
+    width: min(72vw, 340px);
+    height: min(72vw, 340px);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    color: #ffffff;
+    text-shadow: 0 2px 14px rgba(30,20,70,0.25);
+  }
+  .sub {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(13px, 2vw, 16px);
+    margin-bottom: 16px;
+  }
+
+  .quote {
+    font-size: clamp(12.5px, 1.8vw, 14.5px);
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    max-width: 320px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.28);
+    border: 1px solid var(--white-line);
+    backdrop-filter: blur(6px);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 24px;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #6CE29A;
+    box-shadow: 0 0 0 3px rgba(108,226,154,0.25);
+  }
+
+  /* ===== COMPACT SOCIAL ROW ===== */
+  .social-row {
+    display: flex;
+    gap: 14px;
+  }
+  .social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(30,20,70,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+  }
+  .social-icon:hover { transform: translateY(-2px); }
+  .social-icon img { width: 19px; height: 19px; }
+
+  /* ===== ABOUT SECTION ===== */
+  .about {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px 28px 120px;
+    text-align: left;
+  }
+  .about-card {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid var(--white-line);
+    border-radius: 20px;
+    padding: 32px 28px;
+    backdrop-filter: blur(10px);
+  }
+  .about-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--periwinkle-deep);
+    margin-bottom: 10px;
+  }
+  .about-card h2 {
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .about-card p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .about-card p:last-of-type { margin-bottom: 0; }
+  .about-tag {
+    display: block;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray);
+  }
+
+  /* ===== CORNER BUY-ME-COFFEE BADGE ===== */
+  .coffee-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+    animation: badge-pulse 4s ease-in-out infinite;
+  }
+  @keyframes badge-pulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .coffee-badge { animation: none; }
+  }
+  .coffee-qr {
+    width: 128px;
+    height: 128px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 14px rgba(30,20,70,0.25));
+  }
+  .coffee-qr img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: qr-spin 20s linear infinite;
+  }
+  @keyframes qr-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .coffee-qr img { animation: none; }
+  }
+  .coffee-text {
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: #ffffff;
+    text-shadow: 0 1px 8px rgba(30,20,70,0.4);
+  }
+
+  /* ===== RESPONSIVE: small phones ===== */
+  @media (max-width: 380px) {
+    .coffee-qr { width: 104px; height: 104px; }
+  }
+
+  /* ===== RESPONSIVE: tablet ===== */
+  @media (min-width: 768px) {
+    .social-icon { width: 52px; height: 52px; }
+    .social-icon img { width: 21px; height: 21px; }
+    .about-card { padding: 40px 44px; }
+    .about-card h2 { font-size: 22px; }
+    .about-card p { font-size: 15.5px; }
+  }
+
+  /* ===== RESPONSIVE: desktop / large screens ===== */
+  @media (min-width: 1200px) {
+    .about { max-width: 620px; }
+    dotlottie-wc { width: 300px; height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="leaf-field" id="leafField"></div>
+
+  <div class="stage">
+    <dotlottie-wc
+      src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/sticker.lottie"
+      autoplay
+      loop
+      speed="1">
+    </dotlottie-wc>
+
+    <h1>Majek Ay</h1>
+    <p class="sub">Let's talk.</p>
+    <p class="quote">"I hear he creates the best communities"</p>
+
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      Currently moderating SpinMi's Telegram
+    </div>
+
+    <div class="social-row">
+      <a class="social-icon" href="https://t.me/erthxn" target="_blank" aria-label="Telegram">
+        <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/pa_tgfooter.PNG" alt="">
+      </a>
+      <a class="social-icon" href="https://x.com/erthxn" target="_blank" aria-label="X">
+        <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/pa_xfooter.PNG" alt="">
+      </a>
+      <a class="social-icon" href="http://discordapp.com/users/1383754286558875678" target="_blank" aria-label="Discord">
+        <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/pa_disfooter.PNG" alt="">
+      </a>
+    </div>
+  </div>
+
+  <section class="about">
+    <div class="about-card">
+      <div class="about-label">About</div>
+      <h2>Majek Ay</h2>
+      <p>Some people call him Intern. Some know him as erthxn. On the internet he answers to Earth Intern, but mostly he just watches.</p>
+      <p>Majek Ay doesn't do loud. He's the quiet one in the room reading the room before anyone else has noticed there's something to read. Community architecture is his craft, the invisible scaffolding that keeps a Telegram or Discord from tipping into chaos, but that's the work, not the whole story.</p>
+      <p>Off the clock, he's rewatching Basic Instinct (1992) for the twentieth time, still catching new detail in Nick Curran's unraveling. He'll tell you Peaky Blinders is less a show and more a study in how to move through a room without saying much and still own it. Somewhere in between, Rick and Morty keeps him honest, a reminder that chaos and control aren't opposites, they're neighbors.</p>
+      <p>He doesn't explain himself. He doesn't need to. Ask around, the work usually does the talking before he does.</p>
+      <span class="about-tag">Majek Ay · erthxn · Earth Intern · Intern</span>
+    </div>
+  </section>
+
+  <a class="coffee-badge" href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank">
+    <div class="coffee-qr">
+      <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/FlipCash_TipQR.PNG" alt="FlipCash Tip QR">
+    </div>
+    <span class="coffee-text">Buy me coffee</span>
+  </a>
+
+  <script>
+    // Simple SVG leaf/petal shape, recolored to match the periwinkle/lavender theme
+    const leafSVG = (color) => `
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C6 4 3 9 4 15c1 5 5 7 8 7 1-6 2-12 6-16 2-2 3-3 3-3s-5 0-9-1z" fill="${color}"/>
+      </svg>`;
+
+    const colors = ['#FFFFFF', '#E4E6FB', '#C7CBF3', '#B0A8E4'];
+    const field = document.getElementById('leafField');
+    const leafCount = 7;
+
+    for (let i = 0; i < leafCount; i++) {
+      const leaf = document.createElement('span');
+      leaf.className = 'leaf';
+      leaf.innerHTML = leafSVG(colors[Math.floor(Math.random() * colors.length)]);
+      const scale = 0.7 + Math.random() * 0.8;
+      leaf.style.transform = `scale(${scale})`;
+      leaf.style.left = (Math.random() * 94) + 'vw';
+      const fallDuration = 20 + Math.random() * 14;
+      const swayDuration = 3 + Math.random() * 2;
+      const rotateDuration = 6 + Math.random() * 4;
+      const delay = Math.random() * fallDuration * -1;
+      leaf.style.animationDuration = `${fallDuration}s, ${swayDuration}s, ${rotateDuration}s`;
+      leaf.style.animationDelay = `${delay}s, 0s, 0s`;
+      field.appendChild(leaf);
+    }
+  </script>
+
+</body>
+</html>
