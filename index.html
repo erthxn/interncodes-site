@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Majek Ay | erthxn | Earth Intern — Community Architect</title>
 <meta name="description" content="Majek Ay, also known as erthxn and Earth Intern, is a community architect specializing in Telegram and Discord community design.">
+<link rel="canonical" href="https://interncodes.xyz/">
+
+<!-- Speed: warm up connections to the CDN and font hosts before the browser hits them -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Speed: start fetching the sticker animation immediately instead of waiting for the module script to request it -->
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" as="fetch" crossorigin="anonymous">
 
 <!-- Person schema: tells Google/AI crawlers exactly who this is and links every alias together -->
 <script type="application/ld+json">
@@ -25,9 +34,7 @@
 </script>
 
 <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 <style>
   :root {
     --periwinkle-deep: #5D6FDE;
@@ -132,12 +139,15 @@
   }
 
   .quote {
-    font-size: clamp(12.5px, 1.8vw, 14.5px);
+    font-family: 'Playfair Display', 'Georgia', serif;
     font-style: italic;
-    color: rgba(255,255,255,0.8);
-    max-width: 320px;
-    margin: 0 auto 18px;
+    font-weight: 400;
+    font-size: clamp(15px, 2.4vw, 18px);
+    color: rgba(255,255,255,0.92);
+    max-width: 340px;
+    margin: 0 auto 20px;
     line-height: 1.5;
+    text-shadow: 0 1px 10px rgba(30,20,70,0.2);
   }
 
   .status-pill {
@@ -152,7 +162,13 @@
     font-size: 12.5px;
     font-weight: 600;
     color: #ffffff;
+    text-decoration: none;
     margin-bottom: 24px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .status-pill:hover {
+    background: rgba(255,255,255,0.4);
+    transform: translateY(-1px);
   }
   .status-dot {
     width: 7px;
@@ -300,7 +316,7 @@
 
   <div class="stage">
     <dotlottie-wc
-      src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/sticker.lottie"
+      src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie"
       autoplay
       loop
       speed="1">
@@ -310,20 +326,20 @@
     <p class="sub">Let's talk.</p>
     <p class="quote">"I hear he creates the best communities"</p>
 
-    <div class="status-pill">
+    <a class="status-pill" href="https://t.me/spinmicommunity" target="_blank">
       <span class="status-dot"></span>
       Currently moderating SpinMi's Telegram
-    </div>
+    </a>
 
     <div class="social-row">
       <a class="social-icon" href="https://t.me/erthxn" target="_blank" aria-label="Telegram">
-        <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/pa_tgfooter.PNG" alt="">
+        <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/pa_tgfooter.PNG" alt="" width="19" height="19" decoding="async">
       </a>
       <a class="social-icon" href="https://x.com/erthxn" target="_blank" aria-label="X">
-        <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/pa_xfooter.PNG" alt="">
+        <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/pa_xfooter.PNG" alt="" width="19" height="19" decoding="async">
       </a>
       <a class="social-icon" href="http://discordapp.com/users/1383754286558875678" target="_blank" aria-label="Discord">
-        <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/pa_disfooter.PNG" alt="">
+        <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/pa_disfooter.PNG" alt="" width="19" height="19" decoding="async">
       </a>
     </div>
   </div>
@@ -342,7 +358,7 @@
 
   <a class="coffee-badge" href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank">
     <div class="coffee-qr">
-      <img src="https://raw.githubusercontent.com/git-intern/pitch-assets/main/FlipCash_TipQR.PNG" alt="FlipCash Tip QR">
+      <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/FlipCash_TipQR.PNG" alt="FlipCash Tip QR" width="128" height="128" decoding="async">
     </div>
     <span class="coffee-text">Buy me coffee</span>
   </a>
