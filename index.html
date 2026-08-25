@@ -3,19 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Majek Ay | erthxn | Earth Intern — Community Architect</title>
-<meta name="description" content="Majek Ay, also known as erthxn and Earth Intern, is a community architect specializing in Telegram and Discord community design.">
+<title>Majek Ay | erthxn | Community Architect for Web3</title>
+<meta name="description" content="Majek Ay — erthxn — is a community architect who builds Telegram and Discord infrastructure, moderation systems, and engagement tools for Web3 projects.">
 <link rel="canonical" href="https://interncodes.xyz/">
-
-<!-- Speed: warm up connections to the CDN and font hosts before the browser hits them -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Speed: start fetching the sticker animation immediately instead of waiting for the module script to request it -->
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" as="fetch" crossorigin="anonymous">
-
-<!-- Person schema: tells Google/AI crawlers exactly who this is and links every alias together -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,7 +18,8 @@
   "alternateName": ["erthxn", "Earth Intern", "Intern", "Interncode"],
   "url": "https://interncodes.xyz",
   "jobTitle": "Community Architect",
-  "description": "Majek Ay is a community architect who designs and moderates Telegram and Discord communities for Web3 projects. Currently moderating SpinMi's Telegram community.",
+  "email": "majek.erthxn@gmail.com",
+  "description": "Majek Ay is a community architect who designs, builds, and moderates Telegram and Discord communities and engagement infrastructure for Web3 projects.",
   "sameAs": [
     "https://x.com/erthxn",
     "https://t.me/erthxn",
@@ -32,364 +27,640 @@
   ]
 }
 </script>
-
 <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --periwinkle-deep: #5D6FDE;
+    --ink: #100E1C;
+    --ink-soft: #211D38;
+    --indigo: #4B3FD1;
+    --periwinkle: #6E6FE3;
     --periwinkle-mid: #8A8FE8;
-    --lavender-light: #D6D9F7;
-    --lavender-bottom: #9C90DE;
-    --ink: #1B1B2E;
-    --gray: #6B6B7D;
-    --line: rgba(20,20,30,0.08);
-    --white-line: rgba(255,255,255,0.35);
+    --lavender: #C6C1F2;
+    --lavender-light: #E6E4FA;
+    --mist: #F5F3FC;
+    --paper: #FFFFFF;
+    --gray: #65627C;
+    --line: rgba(16,14,28,0.09);
+    --line-soft: rgba(16,14,28,0.06);
+    --line-invert: rgba(255,255,255,0.14);
+    --line-invert-soft: rgba(255,255,255,0.08);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+    --wrap: 1180px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  /* solid background-color is the fallback that shows during iOS/Android
-     overscroll bounce — without it you get a flash of browser-default white */
-  html {
-    min-height: 100%;
-    background-color: var(--lavender-bottom);
-    background-image:
-      radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 48%),
-      linear-gradient(180deg, var(--periwinkle-deep) 0%, var(--periwinkle-mid) 28%, var(--lavender-light) 55%, var(--lavender-bottom) 82%, #8B7FD1 100%);
-    background-attachment: fixed;
-    background-size: cover;
-  }
-  html, body {
-    overscroll-behavior-y: none;
-  }
+  html { scroll-behavior: smooth; background: var(--mist); }
+  html, body { overscroll-behavior-y: none; }
   body {
     font-family: 'Inter', -apple-system, sans-serif;
     color: var(--ink);
-    background: transparent;
+    background: var(--mist);
     min-height: 100vh;
     overflow-x: hidden;
-    position: relative;
+    -webkit-font-smoothing: antialiased;
   }
-
-  /* ===== AMBIENT PARTICLES (SVG, not emoji) ===== */
-  .leaf-field {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .leaf {
-    position: absolute;
-    top: -60px;
-    opacity: 0.5;
-    animation-name: leaf-fall, leaf-sway, leaf-rotate;
-    animation-timing-function: linear, ease-in-out, linear;
-    animation-iteration-count: infinite, infinite, infinite;
-  }
-  .leaf svg { display: block; }
-  @keyframes leaf-fall {
-    from { transform: translateY(-10vh); }
-    to { transform: translateY(112vh); }
-  }
-  @keyframes leaf-sway {
-    0%, 100% { margin-left: 0px; }
-    50% { margin-left: 30px; }
-  }
-  @keyframes leaf-rotate {
-    from { rotate: 0deg; }
-    to { rotate: 360deg; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .leaf { animation: none; display: none; }
-  }
-
-  /* ===== MAIN CONTENT ===== */
-  .stage {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 24px 60px;
-    text-align: center;
-  }
-
-  dotlottie-wc {
-    width: min(72vw, 340px);
-    height: min(72vw, 340px);
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  h1 {
-    font-size: clamp(22px, 5vw, 34px);
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-    color: #ffffff;
-    text-shadow: 0 2px 14px rgba(30,20,70,0.25);
-  }
-  .sub {
-    color: rgba(255,255,255,0.85);
-    font-size: clamp(13px, 2vw, 16px);
-    margin-bottom: 16px;
-  }
-
-  .quote {
-    font-family: 'Playfair Display', 'Georgia', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(15px, 2.4vw, 18px);
-    color: rgba(255,255,255,0.92);
-    max-width: 340px;
-    margin: 0 auto 20px;
-    line-height: 1.5;
-    text-shadow: 0 1px 10px rgba(30,20,70,0.2);
-  }
-
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: rgba(255,255,255,0.28);
-    border: 1px solid var(--white-line);
-    backdrop-filter: blur(6px);
-    border-radius: 999px;
-    padding: 7px 14px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #ffffff;
-    text-decoration: none;
-    margin-bottom: 24px;
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-  .status-pill:hover {
-    background: rgba(255,255,255,0.4);
-    transform: translateY(-1px);
-  }
-  .status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #6CE29A;
-    box-shadow: 0 0 0 3px rgba(108,226,154,0.25);
-  }
-
-  /* ===== COMPACT SOCIAL ROW ===== */
-  .social-row {
-    display: flex;
-    gap: 14px;
-  }
-  .social-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 2px 10px rgba(30,20,70,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.15s ease;
-  }
-  .social-icon:hover { transform: translateY(-2px); }
-  .social-icon img { width: 19px; height: 19px; }
-
-  /* ===== ABOUT SECTION ===== */
-  .about {
-    position: relative;
-    z-index: 1;
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 20px 28px 120px;
-    text-align: left;
-  }
-  .about-card {
-    background: rgba(255,255,255,0.65);
-    border: 1px solid var(--white-line);
-    border-radius: 20px;
-    padding: 32px 28px;
-    backdrop-filter: blur(10px);
-  }
-  .about-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--periwinkle-deep);
-    margin-bottom: 10px;
   }
-  .about-card h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 14px;
+  h1, h2, h3 { font-family: 'Fraunces', 'Georgia', serif; font-weight: 600; letter-spacing: -0.01em; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* ===== NAV ===== */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px;
+    transition: background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease, padding 0.25s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(245,243,252,0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 24px;
+  }
+  .nav-inner { max-width: var(--wrap); margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-mark {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px rgba(75,63,209,0.35);
+    overflow: hidden;
+  }
+  .nav-mark dotlottie-wc { width: 44px; height: 44px; }
+  .nav-brand-text { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15.5px; color: var(--ink); }
+  .nav-links { display: none; align-items: center; gap: 30px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--ink-soft); transition: color 0.15s ease; }
+  .nav-links a:hover { color: var(--indigo); }
+  .nav-cta {
+    display: none; align-items: center; gap: 6px;
+    background: var(--ink); color: #fff; text-decoration: none;
+    font-size: 13.5px; font-weight: 600; padding: 10px 18px; border-radius: 999px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--indigo); transform: translateY(-1px); }
+  .nav-toggle {
+    display: flex; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 8px;
+    z-index: 101;
+  }
+  .nav-toggle span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 99;
+    background: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    transform: translateY(-100%); transition: transform 0.3s ease;
+  }
+  .mobile-menu.open { transform: translateY(0); }
+  .mobile-menu a { color: #fff; text-decoration: none; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500; }
+  .mobile-menu .nav-cta { display: inline-flex; margin-top: 10px; background: var(--periwinkle); }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 148px 0 90px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -8%, rgba(110,111,227,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 10%, rgba(198,193,242,0.5), transparent 55%),
+      var(--mist);
+  }
+  #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.9; }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-eyebrow { color: var(--indigo); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--indigo); display: inline-block; }
+  .hero h1 {
+    font-size: clamp(32px, 6.4vw, 64px);
+    line-height: 1.06;
+    max-width: 15ch;
+    margin-bottom: 22px;
     color: var(--ink);
   }
-  .about-card p {
-    font-size: 14.5px;
-    line-height: 1.7;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  .about-card p:last-of-type { margin-bottom: 0; }
-  .about-tag {
-    display: block;
-    margin-top: 20px;
-    font-size: 13px;
-    font-weight: 700;
+  .hero h1 em { font-style: italic; color: var(--indigo); }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.65;
     color: var(--gray);
+    max-width: 46ch;
+    margin-bottom: 34px;
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+  .btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 26px; border-radius: 999px;
+    font-size: 14.5px; font-weight: 600; text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary { background: var(--ink); color: #fff; box-shadow: 0 8px 24px rgba(16,14,28,0.22); }
+  .btn-primary:hover { background: var(--indigo); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(75,63,209,0.35); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--indigo); color: var(--indigo); transform: translateY(-2px); }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(255,255,255,0.6); border: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+    border-radius: 999px; padding: 8px 16px 8px 12px;
+    font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
+    text-decoration: none; margin-bottom: 42px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .status-pill:hover { transform: translateY(-1px); border-color: var(--periwinkle); }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4FCB84; box-shadow: 0 0 0 3px rgba(79,203,132,0.22); flex-shrink: 0; }
+  .trust-row { border-top: 1px solid var(--line); padding-top: 26px; }
+  .trust-label { font-size: 11.5px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .trust-marks { display: flex; flex-wrap: wrap; gap: 12px 30px; align-items: center; }
+  .trust-marks span { font-family: 'Fraunces', serif; font-weight: 500; font-style: italic; font-size: 16.5px; color: var(--ink-soft); opacity: 0.8; }
+
+  /* ===== CREDIBILITY BAND ===== */
+  .band {
+    background: var(--ink); color: #fff; padding: 64px 0;
+  }
+  .band-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
+  .band-item { border-top: 1px solid var(--line-invert); padding-top: 20px; }
+  .band-item h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #fff; }
+  .band-item p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.62); max-width: 34ch; }
+
+  /* ===== SECTION SHELL ===== */
+  section { position: relative; }
+  .section-pad { padding: 88px 0; }
+  .section-head { max-width: 640px; margin-bottom: 50px; }
+  .section-head .eyebrow { color: var(--indigo); margin-bottom: 14px; }
+  .section-head h2 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; color: var(--ink); }
+  .section-head p { margin-top: 14px; font-size: 15px; line-height: 1.65; color: var(--gray); max-width: 52ch; }
+
+  /* ===== SERVICES ===== */
+  .services-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .service-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius-lg); padding: 32px 28px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(75,63,209,0.12); border-color: var(--lavender); }
+  .service-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--indigo); font-weight: 500; margin-bottom: 18px; }
+  .service-card h3 { font-size: 19px; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
+  .service-card p { font-size: 14px; line-height: 1.65; color: var(--gray); }
+
+  /* ===== PROCESS ===== */
+  .process-list { display: flex; flex-direction: column; }
+  .process-row {
+    display: grid; grid-template-columns: 60px 1fr; gap: 20px;
+    padding: 26px 0; border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .process-row:last-child { border-bottom: 1px solid var(--line); }
+  .process-index { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--periwinkle); font-weight: 500; padding-top: 3px; }
+  .process-row h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+  .process-row p { font-size: 14px; line-height: 1.6; color: var(--gray); max-width: 56ch; }
+
+  /* ===== WORK ===== */
+  .work-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  .work-card {
+    background: linear-gradient(165deg, #fff 0%, var(--lavender-light) 130%);
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .work-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(75,63,209,0.16); }
+  .work-shot {
+    position: relative; aspect-ratio: 5 / 4; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
+    display: flex; align-items: center; justify-content: center; padding: 28px;
+  }
+  .phone-frame {
+    width: min(58%, 190px); aspect-ratio: 9/19.5; background: var(--ink);
+    border-radius: 26px; padding: 8px; box-shadow: 0 24px 50px rgba(16,14,28,0.35);
+  }
+  .phone-frame .screen {
+    width: 100%; height: 100%; border-radius: 19px; overflow: hidden; background: #fff;
+  }
+  .phone-frame .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .work-body { padding: 26px 28px 30px; }
+  .work-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo);
+    background: rgba(75,63,209,0.08); padding: 5px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .work-body h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+  .work-body p { font-size: 14px; line-height: 1.65; color: var(--gray); margin-bottom: 16px; }
+  .work-link { font-size: 13.5px; font-weight: 600; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .work-link:hover { color: var(--indigo); }
+
+  /* ===== ABOUT ===== */
+  .about-section { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+  .about-visual {
+    width: 100%; aspect-ratio: 1/1; max-width: 260px; margin: 0 auto;
+    border-radius: 50%; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 30px 60px rgba(75,63,209,0.22);
+  }
+  .about-visual dotlottie-wc { width: 82%; height: 82%; }
+  .about-copy .eyebrow { color: var(--indigo); margin-bottom: 16px; }
+  .about-copy h2 { font-size: clamp(24px, 3.6vw, 32px); line-height: 1.25; margin-bottom: 18px; color: var(--ink); }
+  .about-copy p { font-size: 15px; line-height: 1.7; color: var(--gray); margin-bottom: 14px; }
+  .about-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .about-facts span {
+    font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
+    background: var(--mist); border: 1px solid var(--line); padding: 8px 14px; border-radius: 999px;
   }
 
-  /* ===== CORNER BUY-ME-COFFEE BADGE ===== */
-  .coffee-badge {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    text-decoration: none;
-    animation: badge-pulse 4s ease-in-out infinite;
+  /* ===== CONTACT ===== */
+  .contact-section { background: var(--ink); color: #fff; }
+  .contact-inner { text-align: left; }
+  .contact-inner .eyebrow { color: var(--lavender); margin-bottom: 18px; }
+  .contact-inner h2 { font-size: clamp(28px, 5.5vw, 48px); line-height: 1.1; max-width: 16ch; margin-bottom: 20px; }
+  .contact-inner > p { font-size: 15.5px; line-height: 1.65; color: rgba(255,255,255,0.6); max-width: 48ch; margin-bottom: 40px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .contact-card {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 18px 20px; border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.05); border: 1px solid var(--line-invert);
+    text-decoration: none; color: #fff;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
   }
-  @keyframes badge-pulse {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .coffee-badge { animation: none; }
-  }
-  .coffee-qr {
-    width: 128px;
-    height: 128px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 4px 14px rgba(30,20,70,0.25));
-  }
-  .coffee-qr img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    animation: qr-spin 20s linear infinite;
-  }
-  @keyframes qr-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .coffee-qr img { animation: none; }
-  }
-  .coffee-text {
-    font-size: 13px;
-    font-weight: 700;
-    white-space: nowrap;
-    color: #ffffff;
-    text-shadow: 0 1px 8px rgba(30,20,70,0.4);
-  }
+  .contact-card:hover { background: rgba(255,255,255,0.09); border-color: var(--periwinkle); transform: translateX(4px); }
+  .contact-card .label { font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lavender); margin-bottom: 4px; }
+  .contact-card .value { font-size: 15.5px; font-weight: 600; }
+  .contact-card .arrow { font-size: 18px; color: var(--lavender); flex-shrink: 0; }
 
-  /* ===== RESPONSIVE: small phones ===== */
+  /* ===== FOOTER ===== */
+  footer { background: var(--ink); color: rgba(255,255,255,0.55); padding: 40px 0 34px; border-top: 1px solid var(--line-invert-soft); }
+  .footer-inner { display: flex; flex-direction: column; gap: 24px; }
+  .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo)); }
+  .footer-brand-text { font-family: 'Fraunces', serif; font-size: 14px; color: #fff; font-weight: 600; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; }
+  .footer-links a { font-size: 13px; text-decoration: none; color: rgba(255,255,255,0.55); transition: color 0.15s ease; }
+  .footer-links a:hover { color: #fff; }
+  .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; padding-top: 20px; border-top: 1px solid var(--line-invert-soft); }
+  .footer-aliases { color: rgba(255,255,255,0.35); }
+  .footer-tip { color: rgba(255,255,255,0.45); text-decoration: none; }
+  .footer-tip:hover { color: var(--lavender); }
+
+  /* ===== RESPONSIVE ===== */
+  /* Small phones */
   @media (max-width: 380px) {
-    .coffee-qr { width: 104px; height: 104px; }
+    .hero { padding-top: 132px; }
   }
-
-  /* ===== RESPONSIVE: tablet ===== */
-  @media (min-width: 768px) {
-    .social-icon { width: 52px; height: 52px; }
-    .social-icon img { width: 21px; height: 21px; }
-    .about-card { padding: 40px 44px; }
-    .about-card h2 { font-size: 22px; }
-    .about-card p { font-size: 15.5px; }
+  /* Tablet portrait and up */
+  @media (min-width: 640px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .band-grid { grid-template-columns: repeat(3, 1fr); }
+    .contact-grid { grid-template-columns: repeat(2, 1fr); }
   }
-
-  /* ===== RESPONSIVE: desktop / large screens ===== */
-  @media (min-width: 1200px) {
-    .about { max-width: 620px; }
-    dotlottie-wc { width: 300px; height: 300px; }
+  /* Tablet landscape / small laptop */
+  @media (min-width: 860px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; }
+    .nav-toggle { display: none; }
+    .about-grid { grid-template-columns: 280px 1fr; }
+    .process-row { grid-template-columns: 90px 1fr; }
+  }
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .section-pad { padding: 120px 0; }
+    .hero { padding: 176px 0 110px; }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-shot { aspect-ratio: 16/11; }
+    .phone-frame { width: min(30%, 170px); }
+  }
+  /* Large desktop */
+  @media (min-width: 1280px) {
+    .wrap { padding: 0 40px; }
+    .hero h1 { max-width: 17ch; }
   }
 </style>
 </head>
 <body>
 
-  <div class="leaf-field" id="leafField"></div>
-
-  <div class="stage">
-    <dotlottie-wc
-      src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie"
-      autoplay
-      loop
-      speed="1">
-    </dotlottie-wc>
-
-    <h1>Majek Ay</h1>
-    <p class="sub">Let's talk.</p>
-    <p class="quote">"I hear he creates the best communities"</p>
-
-    <a class="status-pill" href="https://t.me/spinmicommunity" target="_blank">
-      <span class="status-dot"></span>
-      Currently moderating SpinMi's Telegram
-    </a>
-
-    <div class="social-row">
-      <a class="social-icon" href="https://t.me/erthxn" target="_blank" aria-label="Telegram">
-        <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/pa_tgfooter.PNG" alt="" width="19" height="19" decoding="async">
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">
+        <span class="nav-mark">
+          <dotlottie-wc src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" autoplay loop speed="1"></dotlottie-wc>
+        </span>
+        <span class="nav-brand-text">Majek Ay</span>
       </a>
-      <a class="social-icon" href="https://x.com/erthxn" target="_blank" aria-label="X">
-        <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/pa_xfooter.PNG" alt="" width="19" height="19" decoding="async">
-      </a>
-      <a class="social-icon" href="http://discordapp.com/users/1383754286558875678" target="_blank" aria-label="Discord">
-        <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/pa_disfooter.PNG" alt="" width="19" height="19" decoding="async">
-      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">Start a project</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a class="nav-cta" href="#contact">Start a project</a>
   </div>
 
-  <section class="about">
-    <div class="about-card">
-      <div class="about-label">About</div>
-      <h2>Majek Ay</h2>
-      <p>Some people call him Intern. Some know him as erthxn. On the internet he answers to Earth Intern, but mostly he just watches.</p>
-      <p>Majek Ay doesn't do loud. He's the quiet one in the room reading the room before anyone else has noticed there's something to read. Community architecture is his craft, the invisible scaffolding that keeps a Telegram or Discord from tipping into chaos, but that's the work, not the whole story.</p>
-      <p>Off the clock, he's rewatching Basic Instinct (1992) for the twentieth time, still catching new detail in Nick Curran's unraveling. He'll tell you Peaky Blinders is less a show and more a study in how to move through a room without saying much and still own it. Somewhere in between, Rick and Morty keeps him honest, a reminder that chaos and control aren't opposites, they're neighbors.</p>
-      <p>He doesn't explain himself. He doesn't need to. Ask around, the work usually does the talking before he does.</p>
-      <span class="about-tag">Majek Ay · erthxn · Earth Intern · Intern</span>
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="top">
+    <canvas id="hero-canvas"></canvas>
+    <div class="wrap hero-inner">
+      <p class="eyebrow hero-eyebrow">Community Architect</p>
+      <h1>Majek Ay helps projects build communities that <em>work.</em></h1>
+      <p class="hero-sub">Telegram and Discord infrastructure, moderation systems, and engagement tools for Web3 teams that need their community to hold up under real growth — not just look good on day one.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contact">Start a project →</a>
+        <a class="btn-secondary" href="#work">See the work</a>
+      </div>
+      <a class="status-pill" href="https://t.me/spinmicommunity" target="_blank" rel="noopener">
+        <span class="status-dot"></span>
+        Currently moderating SpinMi's Telegram
+      </a>
+      <div class="trust-row">
+        <p class="trust-label">Built for &amp; worked with</p>
+        <div class="trust-marks">
+          <span>SpinMi</span>
+          <span>ChainSIM</span>
+          <span>GiftTrove</span>
+          <span>TonFork</span>
+          <span>PlushClaw Scout</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CREDIBILITY BAND ===== -->
+  <section class="band">
+    <div class="wrap band-grid">
+      <div class="band-item">
+        <h3>TON-native</h3>
+        <p>Telegram Mini Apps, NFT communities, and gift-market tooling built inside the ecosystem, not bolted onto it.</p>
+      </div>
+      <div class="band-item">
+        <h3>Built from scratch</h3>
+        <p>Discord servers, moderation systems, and engagement bots designed and shipped solo, end to end.</p>
+      </div>
+      <div class="band-item">
+        <h3>On the ground</h3>
+        <p>An active moderator inside the communities he architects — not a consultant who disappears after launch.</p>
+      </div>
     </div>
   </section>
 
-  <a class="coffee-badge" href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank">
-    <div class="coffee-qr">
-      <img src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/FlipCash_TipQR.PNG" alt="FlipCash Tip QR" width="128" height="128" decoding="async">
+  <!-- ===== SERVICES ===== -->
+  <section class="section-pad" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What I build</p>
+        <h2>Infrastructure for communities that actually hold up.</h2>
+        <p>Every project needs something different — here's where most engagements start.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <h3>Community Architecture</h3>
+          <p>Telegram and Discord servers designed from the ground up — role structures, channel logic, moderation systems, and onboarding flows that hold up as a community scales.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <h3>Engagement Systems</h3>
+          <p>Custom bots and mechanics — XP, ranks, quests, gated access — built to keep a community active between announcements, not just during them.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <h3>Growth Infrastructure</h3>
+          <p>Mini Apps and utility tools — gift scouting, price tracking, username sniping — that give a project something genuinely useful to point people toward.</p>
+        </div>
+      </div>
     </div>
-    <span class="coffee-text">Buy me coffee</span>
-  </a>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section-pad" id="process" style="background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Four stages, one operator.</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-row">
+          <div class="process-index">01</div>
+          <div><h3>Diagnose</h3><p>Audit the current community, or the gap where one should be — where people are dropping off, and what's missing.</p></div>
+        </div>
+        <div class="process-row">
+          <div class="process-index">02</div>
+          <div><h3>Architect</h3><p>Design the structure: roles, channels, moderation logic, and the mechanics that will keep people coming back.</p></div>
+        </div>
+        <div class="process-row">
+          <div class="process-index">03</div>
+          <div><h3>Launch</h3><p>Build and ship — bots, servers, and assets that match the brand and are ready for real traffic on day one.</p></div>
+        </div>
+        <div class="process-row">
+          <div class="process-index">04</div>
+          <div><h3>Operate</h3><p>Moderate, iterate, and grow the community day to day — the part most agencies skip.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section class="section-pad" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2>A few things built or run inside the TON ecosystem.</h2>
+      </div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-shot">
+            <div class="phone-frame"><div class="screen">
+              <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/gifttrove.PNG" alt="GiftTrove Telegram Mini App" loading="lazy">
+            </div></div>
+          </div>
+          <div class="work-body">
+            <span class="work-tag">Built &amp; shipped</span>
+            <h3>GiftTrove</h3>
+            <p>A Telegram Mini App for scouting collectible gifts across GetGems, Portals, and MRKT — multilingual React frontend, Python/Flask backend, donate flow and detail modals.</p>
+            <a class="work-link" href="https://t.me/gifttrovebot" target="_blank" rel="noopener">@gifttrovebot →</a>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-shot">
+            <div class="phone-frame"><div class="screen">
+              <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/spinmi.PNG" alt="SpinMi Telegram Mini App" loading="lazy">
+            </div></div>
+          </div>
+          <div class="work-body">
+            <span class="work-tag">Active moderation</span>
+            <h3>SpinMi</h3>
+            <p>A TON Mini App for custom animated coin emojis. Majek moderates the Telegram community day to day — active, not archived.</p>
+            <a class="work-link" href="https://t.me/spinmicommunity" target="_blank" rel="noopener">Join the community →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section-pad about-section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-visual">
+        <dotlottie-wc src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" autoplay loop speed="1"></dotlottie-wc>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">About</p>
+        <h2>Some call him Intern. Others know him as erthxn.</h2>
+        <p>Majek Ay has spent the last few years inside the Telegram and Discord servers most people only see the surface of — the ones that stayed alive after the hype did.</p>
+        <p>He doesn't do loud. He reads a community before he restructures it, builds the scaffolding most members never notice, and lets the work speak first.</p>
+        <div class="about-facts">
+          <span>Community Architect</span>
+          <span>Telegram &amp; Discord</span>
+          <span>TON ecosystem</span>
+          <span>Student, FUOYE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section-pad contact-section" id="contact">
+    <div class="wrap contact-inner">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's build something that holds up.</h2>
+      <p>Open to community architecture, moderation, and engagement infrastructure work for Web3 and TON-ecosystem projects.</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:majek.erthxn@gmail.com">
+          <div><div class="label">Email</div><div class="value">majek.erthxn@gmail.com</div></div>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="contact-card" href="https://t.me/erthxn" target="_blank" rel="noopener">
+          <div><div class="label">Telegram</div><div class="value">@erthxn</div></div>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="contact-card" href="https://x.com/erthxn" target="_blank" rel="noopener">
+          <div><div class="label">X</div><div class="value">@erthxn</div></div>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="contact-card" href="http://discordapp.com/users/1383754286558875678" target="_blank" rel="noopener">
+          <div><div class="label">Discord</div><div class="value">DM: 1383754286558875678</div></div>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-mark"></span>
+          <span class="footer-brand-text">Majek Ay</span>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-aliases">Majek Ay · erthxn · Earth Intern · Intern</span>
+        <a class="footer-tip" href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank" rel="noopener">Buy me a coffee ↗</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // Simple SVG leaf/petal shape, recolored to match the periwinkle/lavender theme
-    const leafSVG = (color) => `
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2C6 4 3 9 4 15c1 5 5 7 8 7 1-6 2-12 6-16 2-2 3-3 3-3s-5 0-9-1z" fill="${color}"/>
-      </svg>`;
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
 
-    const colors = ['#FFFFFF', '#E4E6FB', '#C7CBF3', '#B0A8E4'];
-    const field = document.getElementById('leafField');
-    const leafCount = 7;
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }));
 
-    for (let i = 0; i < leafCount; i++) {
-      const leaf = document.createElement('span');
-      leaf.className = 'leaf';
-      leaf.innerHTML = leafSVG(colors[Math.floor(Math.random() * colors.length)]);
-      const scale = 0.7 + Math.random() * 0.8;
-      leaf.style.transform = `scale(${scale})`;
-      leaf.style.left = (Math.random() * 94) + 'vw';
-      const fallDuration = 20 + Math.random() * 14;
-      const swayDuration = 3 + Math.random() * 2;
-      const rotateDuration = 6 + Math.random() * 4;
-      const delay = Math.random() * fallDuration * -1;
-      leaf.style.animationDuration = `${fallDuration}s, ${swayDuration}s, ${rotateDuration}s`;
-      leaf.style.animationDelay = `${delay}s, 0s, 0s`;
-      field.appendChild(leaf);
+    // Hero network canvas — nodes connecting, echoing "community architecture"
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let W, H, nodes = [];
+
+    function resize() {
+      const hero = document.querySelector('.hero');
+      W = canvas.width = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+      const count = Math.min(46, Math.max(20, Math.floor(W / 40)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+        r: Math.random() * 1.6 + 1
+      }));
     }
-  </script>
+    window.addEventListener('resize', resize);
+    resize();
 
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const linkDist = W < 640 ? 90 : 130;
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        for (let j = i + 1; j < nodes.length; j++) {
+          const m = nodes[j];
+          const dx = n.x - m.x, dy = n.y - m.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < linkDist) {
+            ctx.strokeStyle = `rgba(75,63,209,${0.12 * (1 - dist / linkDist)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(m.x, m.y);
+            ctx.stroke();
+          }
+        }
+      }
+      for (const n of nodes) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(75,63,209,0.4)';
+        ctx.fill();
+      }
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </body>
 </html>
