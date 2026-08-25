@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Majek Ay | erthxn | Community Architect for Web3</title>
-<meta name="description" content="Majek Ay — erthxn — is a community architect who builds Telegram and Discord infrastructure, moderation systems, and engagement tools for Web3 projects.">
+<meta name="description" content="Majek Ay (erthxn) is a community architect who builds Telegram and Discord infrastructure, moderation systems, and engagement tools for Web3 projects.">
 <link rel="canonical" href="https://interncodes.xyz/">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" as="fetch" crossorigin="anonymous">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -27,7 +26,6 @@
   ]
 }
 </script>
-<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -94,14 +92,14 @@
   }
   .nav-inner { max-width: var(--wrap); margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
   .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-mark {
-    width: 34px; height: 34px; border-radius: 50%;
+  .avatar-mark {
+    border-radius: 50%;
     background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px rgba(75,63,209,0.35);
-    overflow: hidden;
+    overflow: hidden; flex-shrink: 0;
   }
-  .nav-mark dotlottie-wc { width: 44px; height: 44px; }
+  .avatar-mark img { width: 100%; height: 100%; object-fit: cover; }
+  .nav-mark { width: 36px; height: 36px; box-shadow: 0 2px 10px rgba(75,63,209,0.35); padding: 3px; }
   .nav-brand-text { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15.5px; color: var(--ink); }
   .nav-links { display: none; align-items: center; gap: 30px; list-style: none; }
   .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--ink-soft); transition: color 0.15s ease; }
@@ -113,23 +111,64 @@
     transition: background 0.15s ease, transform 0.15s ease;
   }
   .nav-cta:hover { background: var(--indigo); transform: translateY(-1px); }
+
+  /* Menu toggle icon */
   .nav-toggle {
-    display: flex; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 8px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    background: none; border: none; cursor: pointer; padding: 0;
     z-index: 101;
   }
-  .nav-toggle span { width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease; }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-  .mobile-menu {
-    position: fixed; inset: 0; z-index: 99;
+  .nav-toggle-bars { position: relative; width: 20px; height: 14px; }
+  .nav-toggle-bars span {
+    position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
     background: var(--ink);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
-    transform: translateY(-100%); transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.25s ease, top 0.4s cubic-bezier(0.65, 0, 0.35, 1), width 0.3s ease;
   }
-  .mobile-menu.open { transform: translateY(0); }
-  .mobile-menu a { color: #fff; text-decoration: none; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500; }
-  .mobile-menu .nav-cta { display: inline-flex; margin-top: 10px; background: var(--periwinkle); }
+  .nav-toggle-bars span:nth-child(1) { top: 0; }
+  .nav-toggle-bars span:nth-child(2) { top: 6px; width: 70%; }
+  .nav-toggle-bars span:nth-child(3) { top: 12px; }
+  .nav-toggle.open .nav-toggle-bars span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+  .nav-toggle.open .nav-toggle-bars span:nth-child(2) { opacity: 0; width: 0; }
+  .nav-toggle.open .nav-toggle-bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+  .nav-toggle:hover .nav-toggle-bars span { background: var(--indigo); }
+
+  /* Mobile menu panel — slides down, light, staggered links (oratory-style) */
+  .mobile-menu {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+    background: rgba(250,249,255,0.97);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 60px rgba(16,14,28,0.18);
+    padding: 96px 28px 40px;
+    display: flex; flex-direction: column; gap: 4px;
+    transform: translateY(-12px) scaleY(0.98); transform-origin: top;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease, visibility 0s linear 0.4s;
+  }
+  .mobile-menu.open {
+    transform: translateY(0) scaleY(1); opacity: 1; visibility: visible; pointer-events: auto;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease, visibility 0s;
+  }
+  .mobile-menu a {
+    color: var(--ink); text-decoration: none; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500;
+    padding: 12px 0; border-bottom: 1px solid var(--line-soft);
+    opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .mobile-menu.open a { opacity: 1; transform: translateY(0); }
+  .mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
+  .mobile-menu.open a:nth-child(2) { transition-delay: 0.13s; }
+  .mobile-menu.open a:nth-child(3) { transition-delay: 0.18s; }
+  .mobile-menu.open a:nth-child(4) { transition-delay: 0.23s; }
+  .mobile-menu .nav-cta {
+    display: inline-flex; margin-top: 18px; background: var(--indigo); align-self: flex-start;
+    padding: 14px 26px; font-size: 14.5px;
+    opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .mobile-menu.open .nav-cta { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
 
   /* ===== HERO ===== */
   .hero {
@@ -146,13 +185,21 @@
   .hero-eyebrow { color: var(--indigo); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
   .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--indigo); display: inline-block; }
   .hero h1 {
-    font-size: clamp(32px, 6.4vw, 64px);
-    line-height: 1.06;
-    max-width: 15ch;
+    font-family: 'Fraunces', 'Georgia', serif;
+    font-weight: 700;
+    font-size: clamp(34px, 6.8vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-width: 15.5ch;
     margin-bottom: 22px;
     color: var(--ink);
   }
-  .hero h1 em { font-style: italic; color: var(--indigo); }
+  .hero h1 .accent {
+    font-style: normal;
+    color: var(--indigo);
+    background: linear-gradient(180deg, transparent 62%, var(--lavender) 62%);
+    padding: 0 2px;
+  }
   .hero-sub {
     font-size: clamp(15px, 2vw, 18px);
     line-height: 1.65;
@@ -160,7 +207,7 @@
     max-width: 46ch;
     margin-bottom: 34px;
   }
-  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
   .btn-primary, .btn-secondary {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 14px 26px; border-radius: 999px;
@@ -171,30 +218,6 @@
   .btn-primary:hover { background: var(--indigo); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(75,63,209,0.35); }
   .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
   .btn-secondary:hover { border-color: var(--indigo); color: var(--indigo); transform: translateY(-2px); }
-  .status-pill {
-    display: inline-flex; align-items: center; gap: 9px;
-    background: rgba(255,255,255,0.6); border: 1px solid var(--line);
-    backdrop-filter: blur(6px);
-    border-radius: 999px; padding: 8px 16px 8px 12px;
-    font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
-    text-decoration: none; margin-bottom: 42px;
-    transition: transform 0.15s ease, border-color 0.15s ease;
-  }
-  .status-pill:hover { transform: translateY(-1px); border-color: var(--periwinkle); }
-  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4FCB84; box-shadow: 0 0 0 3px rgba(79,203,132,0.22); flex-shrink: 0; }
-  .trust-row { border-top: 1px solid var(--line); padding-top: 26px; }
-  .trust-label { font-size: 11.5px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-  .trust-marks { display: flex; flex-wrap: wrap; gap: 12px 30px; align-items: center; }
-  .trust-marks span { font-family: 'Fraunces', serif; font-weight: 500; font-style: italic; font-size: 16.5px; color: var(--ink-soft); opacity: 0.8; }
-
-  /* ===== CREDIBILITY BAND ===== */
-  .band {
-    background: var(--ink); color: #fff; padding: 64px 0;
-  }
-  .band-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
-  .band-item { border-top: 1px solid var(--line-invert); padding-top: 20px; }
-  .band-item h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #fff; }
-  .band-item p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.62); max-width: 34ch; }
 
   /* ===== SECTION SHELL ===== */
   section { position: relative; }
@@ -239,16 +262,16 @@
   .work-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(75,63,209,0.16); }
   .work-shot {
     position: relative; aspect-ratio: 5 / 4; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
-    display: flex; align-items: center; justify-content: center; padding: 28px;
+    display: flex; align-items: center; justify-content: center; padding: 32px;
   }
-  .phone-frame {
-    width: min(58%, 190px); aspect-ratio: 9/19.5; background: var(--ink);
-    border-radius: 26px; padding: 8px; box-shadow: 0 24px 50px rgba(16,14,28,0.35);
+  .work-shot a, .work-shot .shot-static { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; }
+  .work-shot img {
+    max-width: 100%; max-height: 100%; width: auto; height: auto;
+    object-fit: contain; border-radius: 14px;
+    box-shadow: 0 20px 46px rgba(16,14,28,0.28);
+    transition: transform 0.25s ease;
   }
-  .phone-frame .screen {
-    width: 100%; height: 100%; border-radius: 19px; overflow: hidden; background: #fff;
-  }
-  .phone-frame .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .work-shot a:hover img { transform: scale(1.02); }
   .work-body { padding: 26px 28px 30px; }
   .work-tag {
     display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
@@ -261,15 +284,16 @@
   .work-link:hover { color: var(--indigo); }
 
   /* ===== ABOUT ===== */
-  .about-section { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .about-section { background: var(--paper); border-top: 1px solid var(--line); }
   .about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
   .about-visual {
     width: 100%; aspect-ratio: 1/1; max-width: 260px; margin: 0 auto;
     border-radius: 50%; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 30px 60px rgba(75,63,209,0.22);
+    overflow: hidden; padding: 14px;
   }
-  .about-visual dotlottie-wc { width: 82%; height: 82%; }
+  .about-visual img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .about-copy .eyebrow { color: var(--indigo); margin-bottom: 16px; }
   .about-copy h2 { font-size: clamp(24px, 3.6vw, 32px); line-height: 1.25; margin-bottom: 18px; color: var(--ink); }
   .about-copy p { font-size: 15px; line-height: 1.7; color: var(--gray); margin-bottom: 14px; }
@@ -279,12 +303,14 @@
     background: var(--mist); border: 1px solid var(--line); padding: 8px 14px; border-radius: 999px;
   }
 
+  /* Fade between light About and dark Contact */
+  .fade-transition { height: 120px; background: linear-gradient(180deg, var(--paper), var(--ink)); }
+
   /* ===== CONTACT ===== */
   .contact-section { background: var(--ink); color: #fff; }
   .contact-inner { text-align: left; }
   .contact-inner .eyebrow { color: var(--lavender); margin-bottom: 18px; }
-  .contact-inner h2 { font-size: clamp(28px, 5.5vw, 48px); line-height: 1.1; max-width: 16ch; margin-bottom: 20px; }
-  .contact-inner > p { font-size: 15.5px; line-height: 1.65; color: rgba(255,255,255,0.6); max-width: 48ch; margin-bottom: 40px; }
+  .contact-inner h2 { font-size: clamp(28px, 5.5vw, 48px); line-height: 1.1; max-width: 16ch; margin-bottom: 40px; }
   .contact-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
   .contact-card {
     display: flex; align-items: center; justify-content: space-between; gap: 14px;
@@ -303,7 +329,7 @@
   .footer-inner { display: flex; flex-direction: column; gap: 24px; }
   .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; }
   .footer-brand { display: flex; align-items: center; gap: 10px; }
-  .footer-mark { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo)); }
+  .footer-mark { width: 28px; height: 28px; padding: 2px; }
   .footer-brand-text { font-family: 'Fraunces', serif; font-size: 14px; color: #fff; font-weight: 600; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; }
   .footer-links a { font-size: 13px; text-decoration: none; color: rgba(255,255,255,0.55); transition: color 0.15s ease; }
@@ -314,35 +340,29 @@
   .footer-tip:hover { color: var(--lavender); }
 
   /* ===== RESPONSIVE ===== */
-  /* Small phones */
   @media (max-width: 380px) {
     .hero { padding-top: 132px; }
   }
-  /* Tablet portrait and up */
   @media (min-width: 640px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .work-grid { grid-template-columns: repeat(2, 1fr); }
-    .band-grid { grid-template-columns: repeat(3, 1fr); }
     .contact-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  /* Tablet landscape / small laptop */
   @media (min-width: 860px) {
     .nav-links { display: flex; }
     .nav-cta { display: inline-flex; }
     .nav-toggle { display: none; }
+    .mobile-menu { display: none; }
     .about-grid { grid-template-columns: 280px 1fr; }
     .process-row { grid-template-columns: 90px 1fr; }
   }
-  /* Desktop */
   @media (min-width: 1024px) {
     .section-pad { padding: 120px 0; }
     .hero { padding: 176px 0 110px; }
     .services-grid { grid-template-columns: repeat(3, 1fr); }
     .work-grid { grid-template-columns: repeat(2, 1fr); }
     .work-shot { aspect-ratio: 16/11; }
-    .phone-frame { width: min(30%, 170px); }
   }
-  /* Large desktop */
   @media (min-width: 1280px) {
     .wrap { padding: 0 40px; }
     .hero h1 { max-width: 17ch; }
@@ -355,8 +375,8 @@
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a class="nav-brand" href="#top">
-        <span class="nav-mark">
-          <dotlottie-wc src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" autoplay loop speed="1"></dotlottie-wc>
+        <span class="avatar-mark nav-mark">
+          <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/erthxn.PNG" alt="Majek Ay" loading="lazy">
         </span>
         <span class="nav-brand-text">Majek Ay</span>
       </a>
@@ -367,7 +387,9 @@
         <li><a href="#about">About</a></li>
       </ul>
       <a class="nav-cta" href="#contact">Start a project</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
@@ -383,46 +405,14 @@
     <canvas id="hero-canvas"></canvas>
     <div class="wrap hero-inner">
       <p class="eyebrow hero-eyebrow">Community Architect</p>
-      <h1>Majek Ay helps projects build communities that <em>work.</em></h1>
-      <p class="hero-sub">Telegram and Discord infrastructure, moderation systems, and engagement tools for Web3 teams that need their community to hold up under real growth — not just look good on day one.</p>
+      <h1>Majek Ay helps projects build communities that <span class="accent">work.</span></h1>
+      <p class="hero-sub">Telegram and Discord infrastructure, moderation systems, and engagement tools for Web3 teams that need their community to hold up under real growth, not just look good on day one.</p>
       <div class="hero-ctas">
         <a class="btn-primary" href="#contact">Start a project →</a>
         <a class="btn-secondary" href="#work">See the work</a>
       </div>
-      <a class="status-pill" href="https://t.me/spinmicommunity" target="_blank" rel="noopener">
-        <span class="status-dot"></span>
-        Currently moderating SpinMi's Telegram
-      </a>
-      <div class="trust-row">
-        <p class="trust-label">Built for &amp; worked with</p>
-        <div class="trust-marks">
-          <span>SpinMi</span>
-          <span>ChainSIM</span>
-          <span>GiftTrove</span>
-          <span>TonFork</span>
-          <span>PlushClaw Scout</span>
-        </div>
-      </div>
     </div>
   </header>
-
-  <!-- ===== CREDIBILITY BAND ===== -->
-  <section class="band">
-    <div class="wrap band-grid">
-      <div class="band-item">
-        <h3>TON-native</h3>
-        <p>Telegram Mini Apps, NFT communities, and gift-market tooling built inside the ecosystem, not bolted onto it.</p>
-      </div>
-      <div class="band-item">
-        <h3>Built from scratch</h3>
-        <p>Discord servers, moderation systems, and engagement bots designed and shipped solo, end to end.</p>
-      </div>
-      <div class="band-item">
-        <h3>On the ground</h3>
-        <p>An active moderator inside the communities he architects — not a consultant who disappears after launch.</p>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== SERVICES ===== -->
   <section class="section-pad" id="services">
@@ -430,23 +420,23 @@
       <div class="section-head">
         <p class="eyebrow">What I build</p>
         <h2>Infrastructure for communities that actually hold up.</h2>
-        <p>Every project needs something different — here's where most engagements start.</p>
+        <p>Every project needs something different. Here's where most engagements start.</p>
       </div>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-num">01</div>
           <h3>Community Architecture</h3>
-          <p>Telegram and Discord servers designed from the ground up — role structures, channel logic, moderation systems, and onboarding flows that hold up as a community scales.</p>
+          <p>Telegram and Discord servers designed from the ground up, role structures, channel logic, moderation systems, and onboarding flows that hold up as a community scales.</p>
         </div>
         <div class="service-card">
           <div class="service-num">02</div>
           <h3>Engagement Systems</h3>
-          <p>Custom bots and mechanics — XP, ranks, quests, gated access — built to keep a community active between announcements, not just during them.</p>
+          <p>Custom bots and mechanics: XP, ranks, quests, gated access, built to keep a community active between announcements, not just during them.</p>
         </div>
         <div class="service-card">
           <div class="service-num">03</div>
           <h3>Growth Infrastructure</h3>
-          <p>Mini Apps and utility tools — gift scouting, price tracking, username sniping — that give a project something genuinely useful to point people toward.</p>
+          <p>Mini Apps and utility tools, price tracking, username sniping, that give a project something genuinely useful to point people toward.</p>
         </div>
       </div>
     </div>
@@ -462,7 +452,7 @@
       <div class="process-list">
         <div class="process-row">
           <div class="process-index">01</div>
-          <div><h3>Diagnose</h3><p>Audit the current community, or the gap where one should be — where people are dropping off, and what's missing.</p></div>
+          <div><h3>Diagnose</h3><p>Audit the current community, or the gap where one should be, where people are dropping off and what's missing.</p></div>
         </div>
         <div class="process-row">
           <div class="process-index">02</div>
@@ -470,11 +460,11 @@
         </div>
         <div class="process-row">
           <div class="process-index">03</div>
-          <div><h3>Launch</h3><p>Build and ship — bots, servers, and assets that match the brand and are ready for real traffic on day one.</p></div>
+          <div><h3>Launch</h3><p>Build and ship: bots, servers, and assets that match the brand and are ready for real traffic on day one.</p></div>
         </div>
         <div class="process-row">
           <div class="process-index">04</div>
-          <div><h3>Operate</h3><p>Moderate, iterate, and grow the community day to day — the part most agencies skip.</p></div>
+          <div><h3>Operate</h3><p>Moderate, iterate, and grow the community day to day, the part most agencies skip.</p></div>
         </div>
       </div>
     </div>
@@ -485,33 +475,31 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Selected work</p>
-        <h2>A few things built or run inside the TON ecosystem.</h2>
       </div>
       <div class="work-grid">
         <div class="work-card">
           <div class="work-shot">
-            <div class="phone-frame"><div class="screen">
-              <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/gifttrove.PNG" alt="GiftTrove Telegram Mini App" loading="lazy">
-            </div></div>
-          </div>
-          <div class="work-body">
-            <span class="work-tag">Built &amp; shipped</span>
-            <h3>GiftTrove</h3>
-            <p>A Telegram Mini App for scouting collectible gifts across GetGems, Portals, and MRKT — multilingual React frontend, Python/Flask backend, donate flow and detail modals.</p>
-            <a class="work-link" href="https://t.me/gifttrovebot" target="_blank" rel="noopener">@gifttrovebot →</a>
-          </div>
-        </div>
-        <div class="work-card">
-          <div class="work-shot">
-            <div class="phone-frame"><div class="screen">
+            <a href="https://t.me/spinmibot/open" target="_blank" rel="noopener" aria-label="Open SpinMi">
               <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/spinmi.PNG" alt="SpinMi Telegram Mini App" loading="lazy">
-            </div></div>
+            </a>
           </div>
           <div class="work-body">
             <span class="work-tag">Active moderation</span>
             <h3>SpinMi</h3>
-            <p>A TON Mini App for custom animated coin emojis. Majek moderates the Telegram community day to day — active, not archived.</p>
+            <p>A TON Mini App for custom animated coin emojis. Majek moderates the Telegram community day to day, active and not archived.</p>
             <a class="work-link" href="https://t.me/spinmicommunity" target="_blank" rel="noopener">Join the community →</a>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-shot">
+            <div class="shot-static">
+              <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/gifttrove.PNG" alt="GiftTrove Telegram Mini App" loading="lazy">
+            </div>
+          </div>
+          <div class="work-body">
+            <span class="work-tag">Built but paused</span>
+            <h3>GiftTrove</h3>
+            <p>A Telegram Mini App for scouting collectible gifts across several marketplaces: Telegram, Fragment, MarketApp, and Thermos. Multilingual React frontend, Python/Flask backend, premium plan and detail modals.</p>
           </div>
         </div>
       </div>
@@ -522,44 +510,45 @@
   <section class="section-pad about-section" id="about">
     <div class="wrap about-grid">
       <div class="about-visual">
-        <dotlottie-wc src="https://cdn.jsdelivr.net/gh/git-intern/pitch-assets@main/sticker.lottie" autoplay loop speed="1"></dotlottie-wc>
+        <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/erthxn.PNG" alt="Majek Ay" loading="lazy">
       </div>
       <div class="about-copy">
         <p class="eyebrow">About</p>
         <h2>Some call him Intern. Others know him as erthxn.</h2>
-        <p>Majek Ay has spent the last few years inside the Telegram and Discord servers most people only see the surface of — the ones that stayed alive after the hype did.</p>
-        <p>He doesn't do loud. He reads a community before he restructures it, builds the scaffolding most members never notice, and lets the work speak first.</p>
+        <p>Majek Ay has spent the last few years exploring Telegram and Discord servers most people only see the surface of, engineering the unseen technical architecture that turns chaotic group chats into thriving Web3 ecosystems.</p>
+        <p>True community building isn't just about managing the crowd with flashy campaigns, but seamlessly blending culture and code to create digital spaces where people actually want to stay.</p>
         <div class="about-facts">
           <span>Community Architect</span>
           <span>Telegram &amp; Discord</span>
-          <span>TON ecosystem</span>
-          <span>Student, FUOYE</span>
+          <span>BlockChain</span>
+          <span>VibeCoding</span>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="fade-transition"></div>
 
   <!-- ===== CONTACT ===== -->
   <section class="section-pad contact-section" id="contact">
     <div class="wrap contact-inner">
       <p class="eyebrow">Get in touch</p>
       <h2>Let's build something that holds up.</h2>
-      <p>Open to community architecture, moderation, and engagement infrastructure work for Web3 and TON-ecosystem projects.</p>
       <div class="contact-grid">
         <a class="contact-card" href="mailto:majek.erthxn@gmail.com">
           <div><div class="label">Email</div><div class="value">majek.erthxn@gmail.com</div></div>
           <span class="arrow">↗</span>
         </a>
         <a class="contact-card" href="https://t.me/erthxn" target="_blank" rel="noopener">
-          <div><div class="label">Telegram</div><div class="value">@erthxn</div></div>
+          <div><div class="label">Telegram</div><div class="value">Majek Ay [@erthxn]</div></div>
           <span class="arrow">↗</span>
         </a>
         <a class="contact-card" href="https://x.com/erthxn" target="_blank" rel="noopener">
-          <div><div class="label">X</div><div class="value">@erthxn</div></div>
+          <div><div class="label">X</div><div class="value">Majek Ay [@erthxn]</div></div>
           <span class="arrow">↗</span>
         </a>
         <a class="contact-card" href="http://discordapp.com/users/1383754286558875678" target="_blank" rel="noopener">
-          <div><div class="label">Discord</div><div class="value">DM: 1383754286558875678</div></div>
+          <div><div class="label">Discord</div><div class="value">Majek Ay [@erthxn]</div></div>
           <span class="arrow">↗</span>
         </a>
       </div>
@@ -571,7 +560,9 @@
     <div class="wrap footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="footer-mark"></span>
+          <span class="avatar-mark footer-mark">
+            <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/erthxn.PNG" alt="Majek Ay" loading="lazy">
+          </span>
           <span class="footer-brand-text">Majek Ay</span>
         </div>
         <ul class="footer-links">
@@ -599,14 +590,19 @@
     // Mobile menu
     const navToggle = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    function closeMenu() {
       navToggle.classList.remove('open');
       mobileMenu.classList.remove('open');
-    }));
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+    navToggle.addEventListener('click', () => {
+      const willOpen = !mobileMenu.classList.contains('open');
+      navToggle.classList.toggle('open', willOpen);
+      mobileMenu.classList.toggle('open', willOpen);
+      navToggle.setAttribute('aria-expanded', String(willOpen));
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (window.innerWidth >= 860) closeMenu(); });
 
     // Hero network canvas — nodes connecting, echoing "community architecture"
     const canvas = document.getElementById('hero-canvas');
