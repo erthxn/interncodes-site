@@ -210,6 +210,9 @@
     font-style: italic;
     color: var(--indigo);
   }
+  .hero h1 .accent-color {
+    color: var(--indigo);
+  }
   .hero-sub {
     font-size: clamp(15px, 2vw, 18px);
     line-height: 1.65;
@@ -464,10 +467,9 @@
 
   <!-- ===== HERO ===== -->
   <header class="hero" id="top">
-    <canvas id="hero-canvas"></canvas>
     <div class="wrap hero-inner">
       <p class="eyebrow hero-eyebrow">Community Architect</p>
-      <h1>Built by someone who stays <span class="accent">after launch day.</span></h1>
+      <h1>I design the room. <span class="accent-color">Then I run it.</span></h1>
       <p class="hero-sub">Telegram and Discord infrastructure, moderation systems, and engagement tools for teams that need their community to hold up under real growth, not just look good on day one.</p>
       <div class="hero-ctas">
         <a class="btn-primary" href="#contact">Work with me →</a>
@@ -705,59 +707,6 @@
       });
     });
 
-    // Hero network canvas — nodes connecting, echoing "community architecture"
-    const canvas = document.getElementById('hero-canvas');
-    const ctx = canvas.getContext('2d');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let W, H, nodes = [];
-
-    function resize() {
-      const hero = document.querySelector('.hero');
-      W = canvas.width = hero.offsetWidth;
-      H = canvas.height = hero.offsetHeight;
-      const count = Math.min(46, Math.max(20, Math.floor(W / 40)));
-      nodes = Array.from({ length: count }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.18,
-        vy: (Math.random() - 0.5) * 0.18,
-        r: Math.random() * 1.6 + 1
-      }));
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      const linkDist = W < 640 ? 90 : 130;
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > W) n.vx *= -1;
-        if (n.y < 0 || n.y > H) n.vy *= -1;
-        for (let j = i + 1; j < nodes.length; j++) {
-          const m = nodes[j];
-          const dx = n.x - m.x, dy = n.y - m.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < linkDist) {
-            ctx.strokeStyle = `rgba(75,63,209,${0.12 * (1 - dist / linkDist)})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(m.x, m.y);
-            ctx.stroke();
-          }
-        }
-      }
-      for (const n of nodes) {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(75,63,209,0.4)';
-        ctx.fill();
-      }
-      if (!reduceMotion) requestAnimationFrame(draw);
-    }
-    draw();
   </script>
 </body>
 </html>
