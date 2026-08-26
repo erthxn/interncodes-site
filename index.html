@@ -150,8 +150,8 @@
     transition: transform 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.28s ease, visibility 0s;
   }
   .mobile-menu a {
-    color: var(--ink); text-decoration: none; font-family: 'Newsreader', serif; font-size: 21px; font-weight: 500;
-    padding: 7px 0;
+    color: var(--ink); text-decoration: none; font-family: 'Newsreader', serif; font-size: 24px; font-weight: 700;
+    padding: 16px 0;
     border-bottom: 1px solid var(--line);
     opacity: 0; transform: translateY(-8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -162,8 +162,8 @@
   .mobile-menu.open a:nth-child(3) { transition-delay: 0.14s; }
   .mobile-menu.open a:nth-child(4) { transition-delay: 0.18s; }
   .mobile-menu .nav-cta {
-    display: inline-flex; margin-top: 16px; background: var(--indigo); color: #fff !important; align-self: flex-start;
-    padding: 13px 24px; font-size: 14px; border-bottom: none;
+    display: inline-flex; margin-top: 20px; background: var(--indigo); color: #fff !important; align-self: flex-start;
+    padding: 15px 26px; font-size: 15px; font-weight: 700; border-bottom: none;
     opacity: 0; transform: translateY(-8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
@@ -172,8 +172,8 @@
   /* Tablet range: slightly bigger type */
   @media (min-width: 560px) and (max-width: 859px) {
     .mobile-menu { padding-top: 108px; }
-    .mobile-menu a { font-size: 30px; padding: 16px 0; }
-    .mobile-menu .nav-cta { margin-top: 26px; padding: 16px 30px; font-size: 15.5px; }
+    .mobile-menu a { font-size: 32px; padding: 20px 0; }
+    .mobile-menu .nav-cta { margin-top: 28px; padding: 17px 32px; font-size: 16.5px; }
   }
 
   /* ===== HERO ===== */
@@ -237,13 +237,6 @@
   .section-head h2 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; color: var(--ink); }
   .section-head p { margin-top: 14px; font-size: 15px; line-height: 1.65; color: var(--gray); max-width: 52ch; }
 
-  /* ===== STATS BAND ===== */
-  .stats-band { background: var(--ink); padding: 44px 0; }
-  .stats-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
-  .stat-item { text-align: center; border-left: none; }
-  .stat-value { font-family: 'Newsreader', serif; font-weight: 600; font-size: clamp(30px, 5vw, 40px); color: #fff; line-height: 1; margin-bottom: 8px; }
-  .stat-label { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 24ch; margin: 0 auto; }
-
   /* ===== SERVICES ===== */
   .services-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
   .service-card {
@@ -256,20 +249,8 @@
   .service-card h3 { font-size: 19px; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
   .service-card p { font-size: 14px; line-height: 1.65; color: var(--gray); }
 
-  /* ===== PROCESS ===== */
-  .process-list { display: flex; flex-direction: column; }
-  .process-row {
-    display: grid; grid-template-columns: 60px 1fr; gap: 20px;
-    padding: 26px 0; border-top: 1px solid var(--line);
-    align-items: start;
-  }
-  .process-row:last-child { border-bottom: 1px solid var(--line); }
-  .process-index { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--periwinkle); font-weight: 500; padding-top: 3px; }
-  .process-row h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
-  .process-row p { font-size: 14px; line-height: 1.6; color: var(--gray); max-width: 56ch; }
-
   /* ===== WORK ===== */
-  .work-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  .work-all { display: grid; grid-template-columns: 1fr; gap: 24px; }
   .work-card {
     background: linear-gradient(165deg, #fff 0%, var(--lavender-light) 130%);
     border: 1px solid var(--line); border-radius: var(--radius-lg);
@@ -323,7 +304,7 @@
   .work-hotspot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
   .work-body { padding: 26px 28px 30px; }
   .work-tag {
-    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+    display: inline-block; align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
     letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo);
     background: rgba(75,63,209,0.08); padding: 5px 10px; border-radius: 999px; margin-bottom: 14px;
   }
@@ -336,7 +317,7 @@
   .work-feature {
     background: linear-gradient(165deg, #fff 0%, var(--lavender-light) 130%);
     border: 1px solid var(--line); border-radius: var(--radius-lg);
-    overflow: hidden; margin-bottom: 24px;
+    overflow: hidden;
     display: flex; flex-direction: column;
   }
   .work-feature-media {
@@ -345,17 +326,15 @@
     overflow: hidden; flex-shrink: 0;
   }
   .work-feature-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .work-feature-caption {
+    position: absolute; right: 14px; bottom: 14px; z-index: 3;
+    font-size: 11px; font-weight: 600; color: #fff;
+    background: rgba(16,14,28,0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    padding: 5px 10px; border-radius: 999px;
+  }
   .work-feature-body { padding: 28px 26px 32px; display: flex; flex-direction: column; }
   .work-feature-body h3 { font-size: 24px; font-weight: 600; margin: 2px 0 14px; color: var(--ink); }
   .work-feature-body p { font-size: 14.5px; line-height: 1.7; color: var(--gray); margin-bottom: 14px; }
-  .feature-stats {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
-    padding: 18px 0; margin: 6px 0 20px;
-    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  }
-  .feature-stats div { display: flex; flex-direction: column; gap: 3px; }
-  .feature-stats strong { font-family: 'Newsreader', serif; font-size: clamp(17px, 2.6vw, 21px); font-weight: 600; color: var(--indigo); }
-  .feature-stats span { font-size: 11px; color: var(--gray); line-height: 1.4; }
 
   /* Text-only secondary card (cSIM Rate) */
   .work-card-text { justify-content: center; }
@@ -381,8 +360,6 @@
     font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
     background: var(--mist); border: 1px solid var(--line); padding: 8px 14px; border-radius: 999px;
   }
-
-  /* Fade between light About and dark Contact */
 
   /* ===== CONTACT ===== */
   .contact-section { background: var(--ink); color: #fff; }
@@ -423,11 +400,12 @@
   }
   @media (min-width: 640px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .work-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-grid { grid-template-columns: repeat(2, 1fr); }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .stat-item { border-left: 1px solid var(--line-invert-soft); padding-left: 24px; }
-    .stat-item:first-child { border-left: none; padding-left: 0; }
+  }
+  /* Tablet: SpinMi + GiftTrove side by side, cSIM Rate below, centered */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .work-all { grid-template-columns: repeat(2, 1fr); }
+    .work-all .work-card-text { grid-column: 1 / -1; max-width: 420px; width: 100%; margin: 0 auto; }
   }
   @media (min-width: 860px) {
     .nav-links { display: flex; }
@@ -435,17 +413,17 @@
     .nav-toggle { display: none; }
     .mobile-menu { display: none; }
     .about-grid { grid-template-columns: 280px 1fr; }
-    .process-row { grid-template-columns: 90px 1fr; }
     .work-feature { flex-direction: row; align-items: stretch; }
     .work-feature-media { width: 42%; aspect-ratio: unset; align-self: center; max-width: 380px; margin: 24px; border-radius: 16px; aspect-ratio: 1/1; }
     .work-feature-body { flex: 1; padding: 32px 36px 32px 8px; justify-content: center; }
-    .work-grid { align-items: start; }
   }
   @media (min-width: 1024px) {
     .section-pad { padding: 120px 0; }
     .hero { padding: 176px 0 110px; }
     .services-grid { grid-template-columns: repeat(4, 1fr); }
-    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-all { grid-template-columns: repeat(2, 1fr); }
+    .work-all .work-feature { grid-column: 1 / -1; }
+    .work-all .work-card-text { max-width: none; margin: 0; }
   }
   @media (min-width: 1280px) {
     .wrap { padding: 0 40px; }
@@ -498,24 +476,6 @@
     </div>
   </header>
 
-  <!-- ===== STATS BAND ===== -->
-  <section class="stats-band">
-    <div class="wrap stats-grid">
-      <div class="stat-item">
-        <div class="stat-value">6,000+</div>
-        <div class="stat-label">Monthly users on SpinMi's Mini App</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">51</div>
-        <div class="stat-label">Registered for a community event he hosted</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">120+</div>
-        <div class="stat-label">Spin emojis shipped to seed adoption</div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== SERVICES ===== -->
   <section class="section-pad" id="services">
     <div class="wrap">
@@ -556,22 +516,26 @@
         <p class="eyebrow">How it works</p>
         <h2>Four stages, one operator.</h2>
       </div>
-      <div class="process-list">
-        <div class="process-row">
-          <div class="process-index">01</div>
-          <div><h3>Diagnose</h3><p>Audit the current community, or the gap where one should be, where people are dropping off and what's missing.</p></div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <h3>Diagnose</h3>
+          <p>Audit the current community, or the gap where one should be, where people are dropping off and what's missing.</p>
         </div>
-        <div class="process-row">
-          <div class="process-index">02</div>
-          <div><h3>Architect</h3><p>Design the structure: roles, channels, moderation logic, and the mechanics that will keep people coming back.</p></div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <h3>Architect</h3>
+          <p>Design the structure: roles, channels, moderation logic, and the mechanics that will keep people coming back.</p>
         </div>
-        <div class="process-row">
-          <div class="process-index">03</div>
-          <div><h3>Launch</h3><p>Build and ship: bots, servers, and assets that match the brand and are ready for real traffic on day one.</p></div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <h3>Launch</h3>
+          <p>Build and ship: bots, servers, and assets that match the brand and are ready for real traffic on day one.</p>
         </div>
-        <div class="process-row">
-          <div class="process-index">04</div>
-          <div><h3>Operate</h3><p>Moderate, iterate, and grow the community day to day, the part most agencies skip.</p></div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <h3>Operate</h3>
+          <p>Moderate, iterate, and grow the community day to day, the part most agencies skip.</p>
         </div>
       </div>
     </div>
@@ -584,27 +548,25 @@
         <p class="eyebrow">Selected work</p>
       </div>
 
-      <!-- Featured case study: SpinMi -->
-      <div class="work-feature">
-        <div class="work-feature-media">
-          <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/spinmi.PNG" alt="SpinMi Telegram Mini App" loading="lazy">
-          <a class="work-hotspot" href="https://t.me/spinmibot/open" target="_blank" rel="noopener" aria-label="View on SpinMi"></a>
-        </div>
-        <div class="work-feature-body">
-          <span class="work-tag">Active moderation</span>
-          <h3>SpinMi</h3>
-          <p>SpinMi lets you make custom spinning animated coin spin emojis in under 60 seconds. No 3D or video editing needed. You create it, they render it, and it shows up in your chat ready to use.</p>
-          <p>Majek moderates the community day to day and hosted a last-one-standing elimination reward event. He's also created 120+ spin emojis to help push SpinMi into memecoin buybot communities.</p>
-          <div class="feature-stats">
-            <div><strong>6,000+</strong><span>monthly users</span></div>
-            <div><strong>51</strong><span>registered for his event</span></div>
-          </div>
-          <a class="work-link" href="https://t.me/spinmicommunity" target="_blank" rel="noopener">Join the community →</a>
-        </div>
-      </div>
+      <div class="work-all">
 
-      <!-- Secondary work -->
-      <div class="work-grid">
+        <!-- Featured case study: SpinMi -->
+        <div class="work-feature">
+          <div class="work-feature-media">
+            <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/spinmi.PNG" alt="SpinMi Telegram Mini App" loading="lazy">
+            <a class="work-hotspot" href="https://t.me/spinmibot/open" target="_blank" rel="noopener" aria-label="View on SpinMi"></a>
+            <span class="work-feature-caption">6,000+ MAU</span>
+          </div>
+          <div class="work-feature-body">
+            <span class="work-tag">Active moderation</span>
+            <h3>SpinMi</h3>
+            <p>SpinMi lets you make custom spinning animated coin spin emojis in under 60 seconds. No 3D or video editing needed. You create it, they render it, and it shows up in your chat ready to use.</p>
+            <p>Majek moderates the community day to day and hosted a last-one-standing elimination reward event. He's also created 120+ spin emojis to help push SpinMi into memecoin buybot communities.</p>
+            <a class="work-link" href="https://t.me/spinmicommunity" target="_blank" rel="noopener">Join the community →</a>
+          </div>
+        </div>
+
+        <!-- Secondary work -->
         <div class="work-card">
           <div class="work-shot swappable">
             <img class="is-active" data-role="primary" src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/gifttrove.PNG" alt="GiftTrove Telegram Mini App">
@@ -621,6 +583,7 @@
             <p>A Telegram Mini App for scouting collectible gifts across several marketplaces: Telegram, Fragment, MarketApp, and Thermos. Multilingual React frontend, Python/Flask backend, premium plan and detail modals.</p>
           </div>
         </div>
+
         <div class="work-card work-card-text">
           <div class="work-body">
             <span class="work-tag">Built for ChainSIM</span>
@@ -628,6 +591,7 @@
             <p>A floor price tracker and digit value estimator built for the ChainSIM community, helping members scout rarity and pricing at a glance.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
