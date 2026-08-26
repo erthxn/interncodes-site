@@ -26,7 +26,7 @@
   ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,450;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,450&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #100E1C;
@@ -69,7 +69,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-  h1, h2, h3 { font-family: 'Fraunces', 'Georgia', serif; font-weight: 600; letter-spacing: -0.01em; }
+  h1, h2, h3 { font-family: 'Newsreader', 'Georgia', serif; font-weight: 600; letter-spacing: -0.01em; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -84,9 +84,9 @@
     border-bottom: 1px solid transparent;
   }
   .nav.scrolled {
-    background: rgba(245,243,252,0.82);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(247,246,253,0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
     padding: 12px 24px;
   }
@@ -100,7 +100,7 @@
   }
   .avatar-mark img { width: 100%; height: 100%; object-fit: cover; }
   .nav-mark { width: 36px; height: 36px; box-shadow: 0 2px 10px rgba(75,63,209,0.35); padding: 3px; }
-  .nav-brand-text { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15.5px; color: var(--ink); }
+  .nav-brand-text { font-family: 'Newsreader', serif; font-weight: 600; font-size: 15.5px; color: var(--ink); }
   .nav-links { display: none; align-items: center; gap: 30px; list-style: none; }
   .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--ink-soft); transition: color 0.15s ease; }
   .nav-links a:hover { color: var(--indigo); }
@@ -134,41 +134,40 @@
   .nav-toggle.open .nav-toggle-bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
   .nav-toggle:hover .nav-toggle-bars span { background: var(--indigo); }
 
-  /* Mobile menu panel — slides down, light, staggered links (oratory-style) */
+  /* Mobile menu panel — slides down, solid, tight, staggered links (oratory-style) */
   .mobile-menu {
     position: fixed; top: 0; left: 0; right: 0; z-index: 99;
-    background: rgba(250,249,255,0.97);
-    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    background: var(--paper);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 24px 60px rgba(16,14,28,0.18);
-    padding: 96px 28px 40px;
-    display: flex; flex-direction: column; gap: 4px;
-    transform: translateY(-12px) scaleY(0.98); transform-origin: top;
+    box-shadow: 0 30px 70px rgba(16,14,28,0.22);
+    padding: 84px 28px 28px;
+    display: flex; flex-direction: column;
+    transform: translateY(-16px) scaleY(0.96); transform-origin: top;
     opacity: 0; visibility: hidden; pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease, visibility 0s linear 0.4s;
+    transition: transform 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.28s ease, visibility 0s linear 0.38s;
   }
   .mobile-menu.open {
     transform: translateY(0) scaleY(1); opacity: 1; visibility: visible; pointer-events: auto;
-    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease, visibility 0s;
+    transition: transform 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.28s ease, visibility 0s;
   }
   .mobile-menu a {
-    color: var(--ink); text-decoration: none; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500;
-    padding: 12px 0; border-bottom: 1px solid var(--line-soft);
-    opacity: 0; transform: translateY(-10px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    color: var(--ink); text-decoration: none; font-family: 'Newsreader', serif; font-size: 23px; font-weight: 500;
+    padding: 9px 0;
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   .mobile-menu.open a { opacity: 1; transform: translateY(0); }
-  .mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
-  .mobile-menu.open a:nth-child(2) { transition-delay: 0.13s; }
-  .mobile-menu.open a:nth-child(3) { transition-delay: 0.18s; }
-  .mobile-menu.open a:nth-child(4) { transition-delay: 0.23s; }
+  .mobile-menu.open a:nth-child(1) { transition-delay: 0.06s; }
+  .mobile-menu.open a:nth-child(2) { transition-delay: 0.10s; }
+  .mobile-menu.open a:nth-child(3) { transition-delay: 0.14s; }
+  .mobile-menu.open a:nth-child(4) { transition-delay: 0.18s; }
   .mobile-menu .nav-cta {
-    display: inline-flex; margin-top: 18px; background: var(--indigo); align-self: flex-start;
-    padding: 14px 26px; font-size: 14.5px;
-    opacity: 0; transform: translateY(-10px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    display: inline-flex; margin-top: 16px; background: var(--indigo); align-self: flex-start;
+    padding: 13px 24px; font-size: 14px;
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .mobile-menu.open .nav-cta { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+  .mobile-menu.open .nav-cta { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
 
   /* ===== HERO ===== */
   .hero {
@@ -176,16 +175,22 @@
     padding: 148px 0 90px;
     overflow: hidden;
     background:
-      radial-gradient(ellipse 900px 500px at 82% -8%, rgba(110,111,227,0.35), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 10% 10%, rgba(198,193,242,0.5), transparent 55%),
-      var(--mist);
+      radial-gradient(ellipse 1000px 560px at 84% -10%, rgba(75,63,209,0.42), transparent 58%),
+      radial-gradient(ellipse 760px 560px at 6% 6%, rgba(142,133,232,0.4), transparent 55%),
+      radial-gradient(ellipse 620px 480px at 50% 105%, rgba(198,193,242,0.55), transparent 60%),
+      linear-gradient(165deg, #E9E7FA 0%, var(--mist) 45%, #EDEBFB 100%);
   }
-  #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.9; }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.95; }
   .hero-inner { position: relative; z-index: 1; }
   .hero-eyebrow { color: var(--indigo); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
   .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--indigo); display: inline-block; }
   .hero h1 {
-    font-family: 'Fraunces', 'Georgia', serif;
+    font-family: 'Newsreader', 'Georgia', serif;
     font-weight: 700;
     font-size: clamp(34px, 6.8vw, 68px);
     line-height: 1.04;
@@ -261,17 +266,19 @@
   }
   .work-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(75,63,209,0.16); }
   .work-shot {
-    position: relative; aspect-ratio: 5 / 4; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
-    display: flex; align-items: center; justify-content: center; padding: 32px;
+    position: relative; aspect-ratio: 1 / 1; background: linear-gradient(150deg, var(--periwinkle-mid), var(--indigo));
+    overflow: hidden;
   }
-  .work-shot a, .work-shot .shot-static { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; }
   .work-shot img {
-    max-width: 100%; max-height: 100%; width: auto; height: auto;
-    object-fit: contain; border-radius: 14px;
-    box-shadow: 0 20px 46px rgba(16,14,28,0.28);
-    transition: transform 0.25s ease;
+    display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;
   }
-  .work-shot a:hover img { transform: scale(1.02); }
+  .work-hotspot {
+    position: absolute; z-index: 2;
+    /* precisely measured from the source asset so it sits exactly over the "View" button */
+    left: 12.5%; top: 78.5%; width: 22.5%; height: 10%;
+    border-radius: 999px;
+  }
+  .work-hotspot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
   .work-body { padding: 26px 28px 30px; }
   .work-tag {
     display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
@@ -330,7 +337,7 @@
   .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; }
   .footer-brand { display: flex; align-items: center; gap: 10px; }
   .footer-mark { width: 28px; height: 28px; padding: 2px; }
-  .footer-brand-text { font-family: 'Fraunces', serif; font-size: 14px; color: #fff; font-weight: 600; }
+  .footer-brand-text { font-family: 'Newsreader', serif; font-size: 14px; color: #fff; font-weight: 600; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; }
   .footer-links a { font-size: 13px; text-decoration: none; color: rgba(255,255,255,0.55); transition: color 0.15s ease; }
   .footer-links a:hover { color: #fff; }
@@ -361,7 +368,6 @@
     .hero { padding: 176px 0 110px; }
     .services-grid { grid-template-columns: repeat(3, 1fr); }
     .work-grid { grid-template-columns: repeat(2, 1fr); }
-    .work-shot { aspect-ratio: 16/11; }
   }
   @media (min-width: 1280px) {
     .wrap { padding: 0 40px; }
@@ -479,9 +485,8 @@
       <div class="work-grid">
         <div class="work-card">
           <div class="work-shot">
-            <a href="https://t.me/spinmibot/open" target="_blank" rel="noopener" aria-label="Open SpinMi">
-              <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/spinmi.PNG" alt="SpinMi Telegram Mini App" loading="lazy">
-            </a>
+            <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/spinmi.PNG" alt="SpinMi Telegram Mini App" loading="lazy">
+            <a class="work-hotspot" href="https://t.me/spinmibot/open" target="_blank" rel="noopener" aria-label="View on SpinMi"></a>
           </div>
           <div class="work-body">
             <span class="work-tag">Active moderation</span>
@@ -492,9 +497,7 @@
         </div>
         <div class="work-card">
           <div class="work-shot">
-            <div class="shot-static">
-              <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/gifttrove.PNG" alt="GiftTrove Telegram Mini App" loading="lazy">
-            </div>
+            <img src="https://cdn.jsdelivr.net/gh/erthxn/interncodes-site@main/web_assets/gifttrove.PNG" alt="GiftTrove Telegram Mini App" loading="lazy">
           </div>
           <div class="work-body">
             <span class="work-tag">Built but paused</span>
@@ -514,7 +517,6 @@
       </div>
       <div class="about-copy">
         <p class="eyebrow">About</p>
-        <h2>Some call him Intern. Others know him as erthxn.</h2>
         <p>Majek Ay has spent the last few years exploring Telegram and Discord servers most people only see the surface of, engineering the unseen technical architecture that turns chaotic group chats into thriving Web3 ecosystems.</p>
         <p>True community building isn't just about managing the crowd with flashy campaigns, but seamlessly blending culture and code to create digital spaces where people actually want to stay.</p>
         <div class="about-facts">
