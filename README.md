@@ -328,15 +328,15 @@ This helps search engines and knowledge graphs understand who the site represent
 
 ```
 interncodes-site/
-|-- index.html              # Complete single-page application (HTML + CSS + JS)
-|-- CNAME                   # Domain configuration -> interncodes.xyz
-|-- README.md               # This file
-|-- web_assets/
-    |-- erthxn.PNG          # Profile / avatar image
-    |-- spinmi.PNG          # SpinMi project screenshot
-    |-- gifttrove.PNG       # GiftTrove main screenshot
-    |-- gifttrove_preview.PNG # GiftTrove alternate/in-app view
-    |-- majek.PNG           # Additional profile asset
+â”œâ”€â”€ index.html              # Complete single-page application (HTML + CSS + JS)
+â”œâ”€â”€ CNAME                   # Domain configuration -> interncodes.xyz
+â”œâ”€â”€ README.md               # This file
+â””â”€â”€ web_assets/
+    â”œâ”€â”€ erthxn.PNG          # Profile / avatar image
+    â”œâ”€â”€ spinmi.PNG          # SpinMi project screenshot
+    â”œâ”€â”€ gifttrove.PNG       # GiftTrove main screenshot
+    â”œâ”€â”€ gifttrove_preview.PNG # GiftTrove alternate/in-app view
+    â””â”€â”€ majek.PNG           # Additional profile asset
 ```
 
 Assets are referenced via the jsDelivr GitHub CDN pattern:

@@ -6,376 +6,395 @@
 <title>Majek Ay · erthxn · Community Architect</title>
 <meta name="description" content="Majek Ay (erthxn) — Community Architect. I design, build & run Telegram/Discord infrastructure, engagement systems and vibecode tools for Web3 projects. Solana · TON · memecoins.">
 <link rel="canonical" href="https://interncodes.xyz/">
-<meta name="theme-color" content="#0b0b0c">
+<meta name="theme-color" content="#09090b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Majek Ay","alternateName":["erthxn"],"url":"https://interncodes.xyz","email":"majek.erthxn@gmail.com","sameAs":["https://x.com/erthxn","https://t.me/erthxn","http://discordapp.com/users/1383754286558875678"]}
 </script>
 <style>
   :root {
-    --bg: #0b0b0c;
-    --surface: #141416;
-    --fg: #f4eef1;
-    --muted: #9a9196;
-    --faint: #6c666a;
-    --pink: #e16a98;
-    --pink-hot: #f48ab0;
-    --border: rgba(244,238,241,0.1);
-    --font: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --wrap: 72rem;
+    --bg: #09090b;
+    --bg-elevated: #111113;
+    --surface: #18181b;
+    --surface-hover: #1f1f23;
+    --border: rgba(255,255,255,0.06);
+    --border-strong: rgba(255,255,255,0.1);
+    --fg: #fafafa;
+    --fg-muted: #a1a1aa;
+    --fg-faint: #71717a;
+    --accent: #f472b6;
+    --accent-soft: rgba(244,114,182,0.12);
+    --accent-hover: #fb8ac4;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --font: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --wrap: 1100px;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { background: var(--bg); scroll-behavior: smooth; overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
   body {
-    font-family: var(--font); color: var(--fg); background: var(--bg);
-    min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-  h1, h2, h3 { text-wrap: balance; font-weight: 600; }
-  ::selection { background: color-mix(in oklab, var(--pink) 72%, black); color: var(--fg); }
+  ul { list-style: none; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 
-  .grain {
-    pointer-events: none; position: fixed; inset: 0; z-index: 40; opacity: 0.04; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 0;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), backdrop-filter 0.3s var(--ease);
+    border-bottom: 1px solid transparent;
   }
-  .glows { pointer-events: none; position: fixed; inset: 0; z-index: 0; overflow: hidden; contain: paint; }
-  .orb { position: absolute; border-radius: 999px; filter: blur(80px); }
-  .orb-a { width: min(640px,72vw); height: min(640px,72vw); left: -14vw; top: -8vh; background: radial-gradient(circle, rgba(225,106,152,0.58), transparent 68%); animation: pop-a 16s var(--ease) infinite; }
-  .orb-b { width: min(480px,50vw); height: min(480px,50vw); right: -4vw; top: 36vh; background: radial-gradient(circle, rgba(244,138,176,0.42), transparent 70%); animation: pop-b 21s var(--ease) infinite; }
-  .orb-c { width: min(700px,78vw); height: min(700px,78vw); left: 24vw; bottom: -30vh; background: radial-gradient(circle, rgba(225,106,152,0.3), transparent 72%); animation: pop-c 25s var(--ease) infinite; }
-  @keyframes pop-a { 0%,22%,100%{opacity:.1;transform:scale(.9)} 34%{opacity:.82;transform:scale(1.12) translate(5%,3%)} 52%{opacity:.08} 74%{opacity:.48;transform:scale(1.05)} }
-  @keyframes pop-b { 0%,30%,100%{opacity:.06;transform:scale(.88)} 46%{opacity:.7;transform:scale(1.1)} 62%{opacity:.1} }
-  @keyframes pop-c { 0%,40%,100%{opacity:.1;transform:scale(.92)} 58%{opacity:.5;transform:scale(1.08)} }
-
-  .nav { position: fixed; inset: 0 0 auto; z-index: 50; padding-top: env(safe-area-inset-top); }
-  .nav.scrolled { background: rgba(11,11,12,0.78); backdrop-filter: blur(12px); box-shadow: 0 0 0 1px var(--border); }
-  .nav-inner { max-width: var(--wrap); margin: 0 auto; height: 4.25rem; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-links { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: var(--muted); }
+  .nav.scrolled {
+    background: rgba(9,9,11,0.8);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom-color: var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--wrap); margin: 0 auto; padding: 0 24px;
+  }
+  .nav-brand { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+  .nav-links { display: none; gap: 32px; }
+  @media (min-width: 768px) { .nav-links { display: flex; } }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--fg-muted); transition: color 0.2s; }
   .nav-links a:hover { color: var(--fg); }
-  .btn-mail { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 999px; background: var(--pink); color: var(--bg); font-size: 13px; font-weight: 600; }
-  .btn-mail:hover { background: var(--pink-hot); }
-  .btn-mail:active { transform: scale(0.96); }
-
-  .page { position: relative; z-index: 10; }
-  .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 7rem 24px 2.5rem; }
-  .hero-inner { max-width: var(--wrap); margin: 0 auto; width: 100%; }
-  .hero h1 { max-width: 18ch; font-size: clamp(2.6rem, 8.4vw, 6.1rem); line-height: 0.92; letter-spacing: -0.045em; }
-  .hero h1 em { color: var(--pink); font-style: italic; font-weight: 600; }
-  .who { margin-top: 2.25rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
-  .who strong { font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; }
-  .who a { font-size: 1.05rem; color: var(--muted); }
-  .who a:hover { color: var(--pink); }
-
-  .marquee { overflow: hidden; margin-top: 4.5rem; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-  .marquee-track { display: flex; flex-wrap: nowrap; width: max-content; animation: marquee 32s linear infinite; }
-  .marquee-track span { flex: none; white-space: nowrap; }
-  .marquee .item { padding: 0 20px; font-size: 14px; color: var(--muted); }
-  .marquee .slash { color: var(--pink); }
-  @keyframes marquee { to { transform: translateX(-50%); } }
-
-  .section-h { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
-  .section-h h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); letter-spacing: -0.02em; }
-
-  .deck {
-    display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; scrollbar-width: none; touch-action: pan-x;
-    padding: 0 max(18vw, 4rem) 8px max(24px, calc((100vw - var(--wrap)) / 2));
-    margin-top: 2rem;
+  .nav-cta {
+    display: inline-flex; align-items: center; height: 36px; padding: 0 16px;
+    border-radius: 999px; background: var(--accent); color: #09090b;
+    font-size: 13px; font-weight: 600; transition: background 0.2s, transform 0.15s;
   }
-  .deck::-webkit-scrollbar { display: none; }
-  .deck-card { flex: none; width: min(78vw, 32rem); min-width: min(78vw, 32rem); max-width: min(78vw, 32rem); scroll-snap-align: start; scroll-snap-stop: always; }
-  .card { overflow: hidden; border-radius: 28px; background: var(--surface); box-shadow: 0 0 0 1px var(--border); }
-  .card.black { background: #000; }
-  .shot { position: relative; aspect-ratio: 1; }
-  .shot img { width: 100%; height: 100%; object-fit: contain; }
-  .shot-cover { aspect-ratio: 4/3; overflow: hidden; background: #000; }
-  .shot-cover img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-  .spinmi-view { position: absolute; left: 12.2%; top: 78.4%; width: 23%; height: 10.2%; border-radius: 999px; cursor: pointer; }
-  .spinmi-view:hover, .spinmi-view:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; box-shadow: 0 0 24px rgba(225,106,152,0.45); }
-  .card-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 4px 24px 24px; }
-  .card-pad { padding: 24px; }
-  .tag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pink); }
-  .card h3 { margin-top: 4px; font-size: 1.5rem; letter-spacing: -0.02em; }
-  .idx { font-size: 14px; color: var(--faint); }
-  .card p.body { margin-top: 12px; font-size: 15px; line-height: 1.6; color: var(--muted); }
-  .chain { min-height: min(78vw, 32rem); display: flex; flex-direction: column; justify-content: space-between; padding: 40px; }
-  .chain h3 { font-size: clamp(2.4rem, 8vw, 4rem); line-height: 0.95; letter-spacing: -0.04em; }
-
-  .deck-ui { max-width: var(--wrap); margin: 1.5rem auto 0; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-  .deck-ui .count { font-size: 14px; color: var(--faint); font-variant-numeric: tabular-nums; }
-  .arrows { display: flex; gap: 8px; }
-  .arrows button {
-    width: 44px; height: 44px; border-radius: 999px; box-shadow: 0 0 0 1px rgba(244,238,241,0.14);
-    display: grid; place-items: center; font-size: 18px;
+  .nav-cta:hover { background: var(--accent-hover); }
+  .nav-cta:active { transform: scale(0.97); }
+  .nav-toggle { display: flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 8px; }
+  @media (min-width: 768px) { .nav-toggle { display: none; } }
+  .nav-toggle span {
+    display: block; width: 18px; height: 1.5px; background: var(--fg); position: relative;
   }
-  .arrows button:hover { box-shadow: 0 0 0 1px rgba(225,106,152,0.6); }
-  .arrows button:active { transform: scale(0.96); }
-
-  .about { padding: 6.5rem 24px; }
-  .about-grid { max-width: var(--wrap); margin: 0 auto; display: grid; gap: 40px; }
-  .about img { width: 112px; height: 112px; border-radius: 50%; outline: 1px solid rgba(244,238,241,0.12); outline-offset: -1px; object-fit: cover; }
-  .about p { max-width: 28rem; font-size: clamp(1.35rem, 3vw, 1.85rem); line-height: 1.3; font-weight: 500; letter-spacing: -0.02em; }
-  .tags { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
-  .tags li { font-size: 12px; color: var(--muted); padding: 6px 14px; border-radius: 999px; box-shadow: 0 0 0 1px var(--border); }
-
-  .mail { padding: 0 24px 7rem; }
-  .mail a { max-width: var(--wrap); margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-top: 40px; border-top: 1px solid var(--border); }
-  .mail .k { font-size: 14px; color: var(--muted); }
-  .mail .v { display: block; margin-top: 12px; font-size: clamp(1.8rem, 6vw, 4.4rem); line-height: 1; letter-spacing: -0.04em; font-weight: 600; }
-  .mail a:hover .v { color: var(--pink); }
-  .mail .arr { font-size: 32px; color: var(--pink); margin-bottom: 4px; }
-
-  footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 32px 24px; }
-  .foot { max-width: var(--wrap); margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
-  .soc { display: flex; align-items: center; gap: 20px; font-size: 13px; color: var(--muted); }
-  .soc a:hover { color: var(--fg); }
-  .soc svg { width: 16px; height: 16px; display: block; fill: currentColor; }
-  .foot-r { display: flex; gap: 20px; font-size: 13px; color: var(--faint); }
-  .foot-r a:hover { color: var(--fg); }
-
-  .reveal { opacity: 0; transform: translateY(28px); filter: blur(8px); transition: opacity .7s var(--ease), transform .7s var(--ease), filter .7s var(--ease); }
-  .reveal.in { opacity: 1; transform: none; filter: none; }
-  .load { opacity: 0; transform: translateY(18px); filter: blur(6px); animation: in .8s var(--ease) forwards; }
-  .d2 { animation-delay: .18s; }
-  .d3 { animation-delay: .28s; }
-  @keyframes in { to { opacity: 1; transform: none; filter: none; } }
-
-  @media (min-width: 768px) {
-    .deck-card, .deck-card { width: min(62vw, 32rem); min-width: min(62vw, 32rem); max-width: min(62vw, 32rem); }
-    .about-grid { grid-template-columns: 160px 1fr; gap: 64px; align-items: start; }
-    .about img { width: 144px; height: 144px; }
+  .nav-toggle span::before, .nav-toggle span::after {
+    content: ""; position: absolute; left: 0; width: 18px; height: 1.5px; background: var(--fg);
+    transition: transform 0.25s var(--ease);
   }
-  @media (min-width: 1100px) {
-    .deck-card { width: min(46vw, 34rem); min-width: min(46vw, 34rem); max-width: min(46vw, 34rem); }
+  .nav-toggle span::before { top: -6px; }
+  .nav-toggle span::after { top: 6px; }
+  .nav-toggle.open span { background: transparent; }
+  .nav-toggle.open span::before { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span::after { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; background: var(--bg); z-index: 90;
+    padding: 88px 24px 40px; flex-direction: column; gap: 8px;
   }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .orb, .load, .d2, .d3, .marquee-track { animation: none !important; }
-    .load, .reveal { opacity: 1; transform: none; filter: none; }
-    .orb-a, .orb-b, .orb-c { opacity: .28; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 28px; font-weight: 500; padding: 12px 0;
+    border-bottom: 1px solid var(--border); color: var(--fg);
   }
 
-  /* evolved sections */
-  .services, .process { padding: 5rem 1.5rem; max-width: var(--wrap); margin: 0 auto; }
-  .services-grid, .process-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
-  @media (min-width: 640px) { .services-grid { grid-template-columns: 1fr 1fr; } .process-grid { grid-template-columns: repeat(4, 1fr); } }
-  .svc-card, .proc-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 1rem;
-    padding: 1.5rem; transition: border-color .3s var(--ease);
+  /* Hero */
+  .hero { padding: 140px 0 80px; }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--fg-faint); margin-bottom: 28px;
   }
-  .svc-card:hover, .proc-card:hover { border-color: color-mix(in oklab, var(--pink) 40%, transparent); }
-  .svc-card .num, .proc-card .num { font-size: .75rem; color: var(--pink); letter-spacing: .08em; margin-bottom: .5rem; }
-  .svc-card h3, .proc-card h3 { font-size: 1.1rem; margin-bottom: .4rem; }
-  .svc-card p, .proc-card p { color: var(--muted); font-size: .95rem; line-height: 1.5; }
-  .section-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin-bottom: .75rem; }
+  .hero-label::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(2.75rem, 7vw, 4.5rem);
+    font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
+    max-width: 14ch; margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 17px; color: var(--fg-muted); max-width: 42ch; line-height: 1.65; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 44px; padding: 0 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; transition: all 0.2s var(--ease);
+  }
+  .btn-primary { background: var(--fg); color: var(--bg); }
+  .btn-primary:hover { background: #e4e4e7; }
+  .btn-ghost { border: 1px solid var(--border-strong); color: var(--fg); }
+  .btn-ghost:hover { background: var(--surface); border-color: var(--fg-faint); }
 
+  /* Marquee */
+  .marquee-wrap {
+    margin-top: 64px; overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  }
+  .marquee { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+  .marquee span { padding: 0 20px; font-size: 13px; font-weight: 500; color: var(--fg-faint); white-space: nowrap; }
+  .marquee .sep { color: var(--border-strong); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Sections */
+  .section { padding: 96px 0; }
+  .section-label {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--fg-faint); margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 600;
+    letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 48px;
+  }
+
+  /* Services */
+  .services-grid { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+  .svc-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 28px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .svc-card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+  .svc-num { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 16px; }
+  .svc-card h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .svc-card p { font-size: 14.5px; color: var(--fg-muted); line-height: 1.6; }
+
+  /* Process */
+  .process-grid { display: grid; gap: 12px; }
+  @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+  .proc-card {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 20px;
+  }
+  .proc-num { font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+  .proc-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .proc-card p { font-size: 13.5px; color: var(--fg-muted); line-height: 1.55; }
+
+  /* Work */
+  .work-grid { display: grid; gap: 20px; }
+  @media (min-width: 720px) { .work-grid { grid-template-columns: 1.2fr 1fr; } }
+  .work-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden;
+    transition: border-color 0.25s, transform 0.3s var(--ease);
+  }
+  .work-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .work-media { aspect-ratio: 16/10; background: var(--bg-elevated); overflow: hidden; }
+  .work-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+  .work-card:hover .work-media img { transform: scale(1.03); }
+  .work-body { padding: 20px 22px 22px; }
+  .work-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .work-body h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .work-body p { font-size: 13.5px; color: var(--fg-muted); line-height: 1.5; }
+  .work-link {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+    font-size: 13px; font-weight: 500; color: var(--fg); transition: color 0.2s;
+  }
+  .work-link:hover { color: var(--accent); }
+  .work-link svg { width: 14px; height: 14px; }
+
+  /* About */
+  .about { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 720px) { .about { grid-template-columns: 200px 1fr; gap: 56px; } }
+  .about-avatar {
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--border-strong);
+    box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--border);
+  }
+  .about-text { font-size: 18px; line-height: 1.65; color: var(--fg-muted); max-width: 48ch; }
+  .about-text strong { color: var(--fg); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tags li {
+    font-size: 12.5px; font-weight: 500; padding: 6px 12px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--fg-muted);
+  }
+
+  /* Contact */
+  .contact { padding: 80px 0 100px; }
+  .contact-card {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 32px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); transition: border-color 0.25s, background 0.25s;
+  }
+  .contact-card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+  .contact-label { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-faint); margin-bottom: 4px; }
+  .contact-value { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
+  .contact-arrow { font-size: 22px; color: var(--fg-faint); transition: color 0.2s, transform 0.2s; }
+  .contact-card:hover .contact-arrow { color: var(--accent); transform: translateX(3px); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 28px 0; }
+  .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .footer-left { display: flex; align-items: center; gap: 20px; }
+  .footer-handle { font-size: 13.5px; font-weight: 500; color: var(--fg-muted); }
+  .footer-socials { display: flex; gap: 12px; }
+  .footer-socials a {
+    width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px;
+    color: var(--fg-faint); transition: color 0.2s, background 0.2s;
+  }
+  .footer-socials a:hover { color: var(--fg); background: var(--surface); }
+  .footer-socials svg { width: 16px; height: 16px; fill: currentColor; }
+  .footer-tip { font-size: 13px; color: var(--fg-faint); transition: color 0.2s; }
+  .footer-tip:hover { color: var(--accent); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
-  <div class="glows" aria-hidden="true"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div></div>
-  <div class="grain" aria-hidden="true"></div>
-
   <header class="nav" id="nav">
     <div class="nav-inner">
+      <a href="#top" class="nav-brand">erthxn</a>
       <nav class="nav-links">
-        <a href="#services">services</a>
-        <a href="#process">process</a>
-        <a href="#work">shipped</a>
-        <a href="#about">about</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
       </nav>
-      <a class="btn-mail" href="mailto:majek.erthxn@gmail.com">mail</a>
+      <a href="mailto:majek.erthxn@gmail.com" class="nav-cta">Mail</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
     </div>
   </header>
-
-  <main class="page">
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" data-close>Services</a>
+    <a href="#process" data-close>Process</a>
+    <a href="#work" data-close>Work</a>
+    <a href="#about" data-close>About</a>
+    <a href="mailto:majek.erthxn@gmail.com" data-close>Mail</a>
+  </div>
+  <main>
     <section class="hero" id="top">
-      <div class="hero-inner">
-        <h1 class="load">I’m an unhinged degen who architects the <em>best communities</em></h1>
-        <div class="who load d2">
-          <strong>Majek Ay</strong>
-          <a href="https://x.com/erthxn" target="_blank" rel="noopener">@erthxn</a>
+      <div class="wrap">
+        <div class="hero-label">Community Architect</div>
+        <h1>I’m an unhinged degen who architects the <em>best communities</em></h1>
+        <p class="hero-sub">Telegram & Discord infrastructure, engagement systems, and vibecode tools for teams that need their community to hold up under real growth.</p>
+        <div class="hero-actions">
+          <a href="mailto:majek.erthxn@gmail.com" class="btn btn-primary">Work with me</a>
+          <a href="#work" class="btn btn-ghost">See the work</a>
         </div>
+        <div class="marquee-wrap"><div class="marquee" id="marquee"></div></div>
       </div>
-      <div class="marquee load d3">
-        <div class="marquee-track">
-          <span id="ticker-a"></span><span id="ticker-b"></span>
+    </section>
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-label reveal">What I do</div>
+        <h2 class="section-title reveal">Infrastructure that holds up</h2>
+        <div class="services-grid">
+          <article class="svc-card reveal"><div class="svc-num">01</div><h3>Community Architecture</h3><p>Telegram & Discord servers designed from the ground up — roles, channels, moderation systems and onboarding that scale.</p></article>
+          <article class="svc-card reveal"><div class="svc-num">02</div><h3>Engagement Systems</h3><p>Custom bots, XP, ranks, quests and gated access built to keep communities active between announcements.</p></article>
+          <article class="svc-card reveal"><div class="svc-num">03</div><h3>Growth Infrastructure</h3><p>Mini Apps and utility tools (price trackers, snipers, etc.) that give a project something genuinely useful.</p></article>
+          <article class="svc-card reveal"><div class="svc-num">04</div><h3>Build in Public</h3><p>Documenting the process on X so the project builds trust and audience alongside the product.</p></article>
         </div>
       </div>
     </section>
-
-    <section class="services" id="services">
-      <div class="section-label reveal">What I do</div>
-      <div class="section-h reveal"><h2>Infrastructure that holds up</h2></div>
-      <div class="services-grid">
-        <div class="svc-card reveal">
-          <div class="num">01</div>
-          <h3>Community Architecture</h3>
-          <p>Telegram & Discord servers designed from the ground up — roles, channels, moderation systems and onboarding that scale.</p>
-        </div>
-        <div class="svc-card reveal">
-          <div class="num">02</div>
-          <h3>Engagement Systems</h3>
-          <p>Custom bots, XP, ranks, quests and gated access built to keep communities active between announcements.</p>
-        </div>
-        <div class="svc-card reveal">
-          <div class="num">03</div>
-          <h3>Growth Infrastructure</h3>
-          <p>Mini Apps and utility tools (price trackers, snipers, etc.) that give a project something genuinely useful.</p>
-        </div>
-        <div class="svc-card reveal">
-          <div class="num">04</div>
-          <h3>Build in Public</h3>
-          <p>Documenting the process on X so the project builds trust and audience alongside the product.</p>
+    <section class="section" id="process" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-label reveal">How I work</div>
+        <h2 class="section-title reveal">Four stages, one operator</h2>
+        <div class="process-grid">
+          <article class="proc-card reveal"><div class="proc-num">01</div><h3>Diagnose</h3><p>Audit the current community or the gap where one should be.</p></article>
+          <article class="proc-card reveal"><div class="proc-num">02</div><h3>Architect</h3><p>Design structure: roles, channels, moderation and retention mechanics.</p></article>
+          <article class="proc-card reveal"><div class="proc-num">03</div><h3>Launch</h3><p>Build and ship bots, servers and assets ready for real traffic.</p></article>
+          <article class="proc-card reveal"><div class="proc-num">04</div><h3>Operate</h3><p>Moderate, iterate and grow day-to-day — the part most skip.</p></article>
         </div>
       </div>
     </section>
-
-    <section class="process" id="process">
-      <div class="section-label reveal">How I work</div>
-      <div class="section-h reveal"><h2>Four stages, one operator</h2></div>
-      <div class="process-grid">
-        <div class="proc-card reveal">
-          <div class="num">01</div>
-          <h3>Diagnose</h3>
-          <p>Audit the current community or the gap where one should be.</p>
-        </div>
-        <div class="proc-card reveal">
-          <div class="num">02</div>
-          <h3>Architect</h3>
-          <p>Design structure: roles, channels, moderation and retention mechanics.</p>
-        </div>
-        <div class="proc-card reveal">
-          <div class="num">03</div>
-          <h3>Launch</h3>
-          <p>Build and ship bots, servers and assets ready for real traffic.</p>
-        </div>
-        <div class="proc-card reveal">
-          <div class="num">04</div>
-          <h3>Operate</h3>
-          <p>Moderate, iterate and grow day-to-day — the part most skip.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="section-h reveal"><h2>Selected work</h2></div>
-      <div class="deck reveal" id="deck" tabindex="0" aria-label="Shipped work">
-        <article class="deck-card">
-          <div class="card black">
-            <div class="shot">
-              <img src="web_assets/spinmi.PNG" alt="SpinMi">
-              <a class="spinmi-view" href="https://t.me/spinmibot/open" target="_blank" rel="noopener" aria-label="View SpinMi mini app"></a>
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="section-label reveal">Selected work</div>
+        <h2 class="section-title reveal">Shipped & running</h2>
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <div class="work-media"><img src="web_assets/spinmi.PNG" alt="SpinMi" loading="lazy"></div>
+            <div class="work-body">
+              <div class="work-tag">Moderator</div>
+              <h3>SpinMi</h3>
+              <p>Create, render and receive Telegram animated coin emojis in private chat.</p>
+              <a href="https://t.me/spinmibot/open" target="_blank" rel="noopener" class="work-link">Open Mini App <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
             </div>
-            <div class="card-foot">
-              <div><p class="tag">moderator</p><h3>SpinMi</h3></div>
-              <span class="idx">01</span>
+          </article>
+          <article class="work-card reveal">
+            <div class="work-media"><img src="web_assets/gifttrove.PNG" alt="GiftTrove" loading="lazy"></div>
+            <div class="work-body">
+              <div class="work-tag">Product</div>
+              <h3>GiftTrove</h3>
+              <p>Scout and manage Telegram gifts with clean tooling for collectors.</p>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="about">
+          <img class="about-avatar reveal" src="web_assets/pfp.jpg" alt="Majek Ay">
+          <div>
+            <p class="about-text reveal">I’m <strong>@erthxn</strong> — Community Architect. I design Telegram & Discord infrastructure, ship engagement systems, and vibecode tools that actually hold up under growth. Building in public on Solana & TON.</p>
+            <ul class="tags reveal">
+              <li>intern</li><li>Telegram</li><li>Discord</li><li>community building</li>
+              <li>vibecoding</li><li>memecoins</li><li>solana</li><li>ton</li>
+            </ul>
           </div>
-        </article>
-        <article class="deck-card">
-          <div class="card">
-            <div class="shot-cover"><img src="web_assets/gifttrove.PNG" alt="GiftTrove"></div>
-            <div class="card-pad">
-              <div class="card-foot" style="padding:0">
-                <div><p class="tag">mini app</p><h3>GiftTrove</h3></div>
-                <span class="idx">02</span>
-              </div>
-              <p class="body">Scout collectible gifts across Telegram, Fragment, MarketApp, and Thermos. React front, Python/Flask back.</p>
-            </div>
-          </div>
-        </article>
-        <article class="deck-card">
-          <div class="card chain">
-            <div><p class="tag">utility</p><h3>ChainSIM</h3></div>
-            <div class="card-foot" style="padding:0">
-              <p class="body" style="margin:0;max-width:18rem">Floor tracker and digit estimator for the ChainSIM crowd.</p>
-              <span class="idx">03</span>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="deck-ui">
-        <p class="count" id="count">01 / 03</p>
-        <div class="arrows">
-          <button type="button" id="prev" aria-label="Previous">‹</button>
-          <button type="button" id="next" aria-label="Next">›</button>
         </div>
       </div>
     </section>
-
-    <section class="about" id="about">
-      <div class="about-grid">
-        <img class="reveal" src="web_assets/pfp.jpg" alt="Majek Ay">
-        <div>
-          <p class="reveal">I’m @erthxn — Community Architect. I design Telegram & Discord infrastructure, ship engagement systems, and vibecode tools that actually hold up under growth. Building in public on Solana & TON.</p>
-          <ul class="tags reveal">
-            <li>intern</li><li>Telegram</li><li>Discord</li>
-            <li>community building</li><li>vibecoding</li><li>memecoins</li><li>solana</li><li>ton</li>
-          </ul>
-        </div>
+    <section class="contact" id="mail">
+      <div class="wrap">
+        <a href="mailto:majek.erthxn@gmail.com" class="contact-card reveal">
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">majek.erthxn@gmail.com</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
       </div>
-    </section>
-
-    <section class="mail" id="mail">
-      <a class="reveal" href="mailto:majek.erthxn@gmail.com">
-        <span><span class="k">email</span><span class="v">majek.erthxn@gmail.com</span></span>
-        <span class="arr">↗</span>
-      </a>
     </section>
   </main>
-
   <footer>
-    <div class="foot">
-      <div class="soc">
-        <span>@erthxn</span>
-        <a href="https://x.com/erthxn" target="_blank" rel="noopener" aria-label="X">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.5 8.57L22.5 22h-6.59l-5.16-6.74L5.2 22H1.94l8.03-9.17L1.5 2h6.75l4.66 6.17L18.244 2Zm-1.16 18.06h1.81L7.01 3.84H5.07l12.014 16.22Z"/></svg>
-        </a>
-        <a href="https://t.me/erthxn" target="_blank" rel="noopener" aria-label="Telegram">
-          <svg viewBox="0 0 24 24"><path d="M21.94 4.37c.28-.96-.66-1.76-1.57-1.36L2.6 9.7c-1.03.45-.98 1.93.07 2.3l4.4 1.55 1.7 5.4c.3.94 1.5 1.2 2.2.5l2.45-2.5 4.52 3.32c.8.59 1.94.15 2.2-.82l2.8-14.08ZM9.1 13.4l8.66-5.4c.18-.11.37.13.22.28l-7.3 7.08-.3 3.38c-.04.42-.62.5-.78.1L9.1 13.4Z"/></svg>
-        </a>
-        <a href="http://discordapp.com/users/1383754286558875678" target="_blank" rel="noopener" aria-label="Discord">
-          <svg viewBox="0 0 24 24"><path d="M19.27 5.33A17.4 17.4 0 0 0 15.06 4c-.18.32-.4.76-.54 1.1a16.1 16.1 0 0 0-4.04 0A11.3 11.3 0 0 0 9.93 4 17.5 17.4 0 0 0 5.7 5.34C2.77 9.7 2 13.96 2.18 18.16A17.6 17.6 0 0 0 7.5 20c.36-.48.68-.99.96-1.52a11.4 11.4 0 0 1-1.51-.73c.13-.09.25-.19.37-.29 2.92 1.36 6.08 1.36 8.96 0 .12.1.24.2.37.29-.48.28-.99.53-1.52.73.28.53.6 1.04.96 1.52a17.5 17.5 0 0 0 5.33-1.84c.4-4.86-.68-9.08-3.15-12.83ZM8.68 15.38c-.88 0-1.6-.8-1.6-1.79s.7-1.79 1.6-1.79 1.62.81 1.6 1.79c0 .99-.7 1.79-1.6 1.79Zm6.64 0c-.88 0-1.6-.8-1.6-1.79s.7-1.79 1.6-1.79 1.62.81 1.6 1.79c0 .99-.71 1.79-1.6 1.79Z"/></svg>
-        </a>
+    <div class="wrap footer-inner">
+      <div class="footer-left">
+        <span class="footer-handle">@erthxn</span>
+        <div class="footer-socials">
+          <a href="https://x.com/erthxn" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.5 8.57L22.5 22h-6.59l-5.1-6.72L5.2 22H1.9l8.1-9.26L1.5 2h6.7l4.6 6.1L18.244 2Zm-1.2 18.2h1.9L7.05 3.7H5.05L17.044 20.2Z"/></svg></a>
+          <a href="https://t.me/erthxn" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm4.64 6.8-1.7 8.04c-.12.55-.46.68-.93.42l-2.58-1.9-1.24 1.2c-.14.14-.25.25-.52.25l.18-2.6 4.76-4.3c.21-.18-.05-.29-.32-.1l-5.88 3.7-2.53-.79c-.55-.17-.56-.55.12-.82l9.87-3.8c.46-.17.86.1.71.7Z"/></svg></a>
+          <a href="http://discordapp.com/users/1383754286558875678" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515.07.07 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.3 18.3 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.07.07 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.08.08 0 0 0 .084-.028 14 14 0 0 0 1.226-1.994.07.07 0 0 0-.041-.098 13.1 13.1 0 0 1-1.872-.892.07.07 0 0 1-.007-.117c.126-.094.252-.192.372-.292a.07.07 0 0 1 .078-.01c3.927 1.793 8.18 1.793 12.061 0a.07.07 0 0 1 .079.01c.12.1.246.198.373.292a.07.07 0 0 1-.006.117 12.3 12.3 0 0 1-1.873.892.07.07 0 0 0-.041.099c.36.698.772 1.362 1.225 1.993a.08.08 0 0 0 .084.029 19.8 19.8 0 0 0 6.002-3.03.08.08 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03ZM8.68 15.38c-.88 0-1.6-.8-1.6-1.79s.7-1.79 1.6-1.79 1.62.81 1.6 1.79c0 .99-.7 1.79-1.6 1.79Zm6.64 0c-.88 0-1.6-.8-1.6-1.79s.7-1.79 1.6-1.79 1.62.81 1.6 1.79c0 .99-.71 1.79-1.6 1.79Z"/></svg></a>
+        </div>
       </div>
-      <div class="foot-r">
-        <a href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank" rel="noopener">coffee</a>
-      </div>
+      <a href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank" rel="noopener" class="footer-tip">coffee →</a>
     </div>
   </footer>
-
   <script>
-    const areas = ["community building","vibecoding","memecoins","solana","ton"];
-    const tickerHtml = areas.map(a => `<span class="item">${a}</span><span class="slash">/</span>`).join("");
-    document.getElementById("ticker-a").innerHTML = tickerHtml;
-    document.getElementById("ticker-b").innerHTML = tickerHtml;
-
+    const areas = ["community building","vibecoding","memecoins","solana","ton","telegram","discord"];
+    const html = areas.map(a => `<span>${a}</span><span class="sep">/</span>`).join("");
+    document.getElementById("marquee").innerHTML = html + html;
     const nav = document.getElementById("nav");
-    window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 8), { passive: true });
-
-    const deck = document.getElementById("deck");
-    const count = document.getElementById("count");
-    const cards = [...deck.querySelectorAll(".deck-card")];
-    function cardStep() { return cards[0].getBoundingClientRect().width + 20; }
-    function current() {
-      const mid = deck.scrollLeft + 40;
-      let best = 0, dist = Infinity;
-      cards.forEach((c, i) => { const d = Math.abs(c.offsetLeft - deck.offsetLeft - mid); if (d < dist) { dist = d; best = i; } });
-      return best;
-    }
-    function renderCount() { const i = current(); count.textContent = `0${i+1} / 0${cards.length}`; }
-    deck.addEventListener("scroll", renderCount, { passive: true });
-    document.getElementById("prev").onclick = () => deck.scrollBy({ left: -cardStep(), behavior: "smooth" });
-    document.getElementById("next").onclick = () => deck.scrollBy({ left: cardStep(), behavior: "smooth" });
-
+    window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 20), { passive: true });
+    const toggle = document.getElementById("navToggle");
+    const menu = document.getElementById("mobileMenu");
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("open");
+      menu.classList.toggle("open");
+      document.body.style.overflow = menu.classList.contains("open") ? "hidden" : "";
+    });
+    menu.querySelectorAll("[data-close]").forEach(a => a.addEventListener("click", () => {
+      toggle.classList.remove("open"); menu.classList.remove("open"); document.body.style.overflow = "";
+    }));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.16, rootMargin: "0px 0px -10% 0px" });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
     document.querySelectorAll(".reveal").forEach(el => io.observe(el));
   </script>
 </body>
