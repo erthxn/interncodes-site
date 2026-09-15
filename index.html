@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Majek Ay · @erthxn</title>
-<meta name="description" content="Majek Ay (@erthxn) — retarded degen who architects the best community. Community building, vibecoding, memecoins, Solana, TON.">
+<title>Majek Ay · erthxn · Community Architect</title>
+<meta name="description" content="Majek Ay (erthxn) — Community Architect. I design, build & run Telegram/Discord infrastructure, engagement systems and vibecode tools for Web3 projects. Solana · TON · memecoins.">
 <link rel="canonical" href="https://interncodes.xyz/">
 <meta name="theme-color" content="#0b0b0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,6 +159,21 @@
     .load, .reveal { opacity: 1; transform: none; filter: none; }
     .orb-a, .orb-b, .orb-c { opacity: .28; }
   }
+
+  /* evolved sections */
+  .services, .process { padding: 5rem 1.5rem; max-width: var(--wrap); margin: 0 auto; }
+  .services-grid, .process-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  @media (min-width: 640px) { .services-grid { grid-template-columns: 1fr 1fr; } .process-grid { grid-template-columns: repeat(4, 1fr); } }
+  .svc-card, .proc-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 1rem;
+    padding: 1.5rem; transition: border-color .3s var(--ease);
+  }
+  .svc-card:hover, .proc-card:hover { border-color: color-mix(in oklab, var(--pink) 40%, transparent); }
+  .svc-card .num, .proc-card .num { font-size: .75rem; color: var(--pink); letter-spacing: .08em; margin-bottom: .5rem; }
+  .svc-card h3, .proc-card h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+  .svc-card p, .proc-card p { color: var(--muted); font-size: .95rem; line-height: 1.5; }
+  .section-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin-bottom: .75rem; }
+
 </style>
 </head>
 <body>
@@ -168,17 +183,19 @@
   <header class="nav" id="nav">
     <div class="nav-inner">
       <nav class="nav-links">
+        <a href="#services">services</a>
+        <a href="#process">process</a>
         <a href="#work">shipped</a>
         <a href="#about">about</a>
       </nav>
-      <a class="btn-mail" href="/cdn-cgi/l/email-protection#3b565a515e50155e494f5343557b5c565a525715585456">mail</a>
+      <a class="btn-mail" href="mailto:majek.erthxn@gmail.com">mail</a>
     </div>
   </header>
 
   <main class="page">
     <section class="hero" id="top">
       <div class="hero-inner">
-        <h1 class="load">I’m a retarded degen who architects the <em>best community</em></h1>
+        <h1 class="load">I’m an unhinged degen who architects the <em>best communities</em></h1>
         <div class="who load d2">
           <strong>Majek Ay</strong>
           <a href="https://x.com/erthxn" target="_blank" rel="noopener">@erthxn</a>
@@ -191,8 +208,62 @@
       </div>
     </section>
 
+    <section class="services" id="services">
+      <div class="section-label reveal">What I do</div>
+      <div class="section-h reveal"><h2>Infrastructure that holds up</h2></div>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <div class="num">01</div>
+          <h3>Community Architecture</h3>
+          <p>Telegram & Discord servers designed from the ground up — roles, channels, moderation systems and onboarding that scale.</p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="num">02</div>
+          <h3>Engagement Systems</h3>
+          <p>Custom bots, XP, ranks, quests and gated access built to keep communities active between announcements.</p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="num">03</div>
+          <h3>Growth Infrastructure</h3>
+          <p>Mini Apps and utility tools (price trackers, snipers, etc.) that give a project something genuinely useful.</p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="num">04</div>
+          <h3>Build in Public</h3>
+          <p>Documenting the process on X so the project builds trust and audience alongside the product.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="section-label reveal">How I work</div>
+      <div class="section-h reveal"><h2>Four stages, one operator</h2></div>
+      <div class="process-grid">
+        <div class="proc-card reveal">
+          <div class="num">01</div>
+          <h3>Diagnose</h3>
+          <p>Audit the current community or the gap where one should be.</p>
+        </div>
+        <div class="proc-card reveal">
+          <div class="num">02</div>
+          <h3>Architect</h3>
+          <p>Design structure: roles, channels, moderation and retention mechanics.</p>
+        </div>
+        <div class="proc-card reveal">
+          <div class="num">03</div>
+          <h3>Launch</h3>
+          <p>Build and ship bots, servers and assets ready for real traffic.</p>
+        </div>
+        <div class="proc-card reveal">
+          <div class="num">04</div>
+          <h3>Operate</h3>
+          <p>Moderate, iterate and grow day-to-day — the part most skip.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="work">
-      <div class="section-h reveal"><h2>shipped</h2></div>
+      <div class="section-h reveal"><h2>Selected work</h2></div>
       <div class="deck reveal" id="deck" tabindex="0" aria-label="Shipped work">
         <article class="deck-card">
           <div class="card black">
@@ -241,7 +312,7 @@
       <div class="about-grid">
         <img class="reveal" src="web_assets/pfp.jpg" alt="Majek Ay">
         <div>
-          <p class="reveal">I’m @erthxn. I architect communities. I vibecode. I degen on Solana and TON.</p>
+          <p class="reveal">I’m @erthxn — Community Architect. I design Telegram & Discord infrastructure, ship engagement systems, and vibecode tools that actually hold up under growth. Building in public on Solana & TON.</p>
           <ul class="tags reveal">
             <li>intern</li><li>Telegram</li><li>Discord</li>
             <li>community building</li><li>vibecoding</li><li>memecoins</li><li>solana</li><li>ton</li>
@@ -251,8 +322,8 @@
     </section>
 
     <section class="mail" id="mail">
-      <a class="reveal" href="/cdn-cgi/l/email-protection#abc6cac1cec085ced9dfc3d3c5ebccc6cac2c785c8c4c6">
-        <span><span class="k">email</span><span class="v">majek.erthxn</span></span>
+      <a class="reveal" href="mailto:majek.erthxn@gmail.com">
+        <span><span class="k">email</span><span class="v">majek.erthxn@gmail.com</span></span>
         <span class="arr">↗</span>
       </a>
     </section>
@@ -278,7 +349,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     const areas = ["community building","vibecoding","memecoins","solana","ton"];
     const tickerHtml = areas.map(a => `<span class="item">${a}</span><span class="slash">/</span>`).join("");
     document.getElementById("ticker-a").innerHTML = tickerHtml;
