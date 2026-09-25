@@ -1,45 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Majek Ay · erthxn · Community Architect</title>
+<meta name="description" content="Majek Ay (erthxn) — Community Architect. I design, build and run Telegram/Discord infrastructure, engagement systems and vibecode tools for Web3 projects. Solana · TON · memecoins.">
+<link rel="canonical" href="https://interncodes.xyz/">
+<meta name="theme-color" content="#fafaf8">
+<meta property="og:title" content="Majek Ay · erthxn · Community Architect">
+<meta property="og:description" content="Telegram and Discord infrastructure, engagement systems and vibecode tools that hold up under real growth.">
+<meta property="og:image" content="web_assets/og.jpg">
+<meta property="og:url" content="https://interncodes.xyz/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Majek Ay","alternateName":["erthxn"],"url":"https://interncodes.xyz","email":"majek.erthxn@gmail.com","sameAs":["https://x.com/erthxn","https://t.me/erthxn","http://discordapp.com/users/1383754286558875678"]}
+</script>
+<style>
+*{margin:0}
+button{cursor:pointer}
+:root {
+  --bg: #fafaf8;
+  --ink: #161513;
+  --muted: #6b6862;
+  --line: #e6e4de;
+  --soft: #f3f2ee;
+  --sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --wrap: 68rem;
+}
 
-erthxn
-Shipped
-Process
-About
-Contact
-Mail
+* { box-sizing: border-box; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body.nav-open { overflow: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; }
+h1, h2, h3 { text-wrap: balance; font-weight: 600; letter-spacing: -0.03em; margin: 0; }
+::selection { background: #e7e4dc; color: var(--ink); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+section[id] { scroll-margin-top: 84px; }
 
+.star { display: block; color: var(--ink); animation: spin 16s linear infinite; }
+.star-sm { width: 18px; height: 18px; }
+.star-md { width: 52px; height: 52px; }
+.star-lg { width: 84px; height: 84px; color: var(--ink); }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-COMMUNITY ARCHITECT
-I’m an unhinged degen who architects the best communities.
-Majek Ay
-@erthxn
-Shipped.
-Drag a card, or use the arrows.
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-in {
+  width: min(var(--wrap), calc(100% - 40px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 650;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--ink); }
+.nav-links a.active { background: var(--soft); }
+.mail-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+}
+.mail-btn:hover { opacity: 0.86; }
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.burger span,
+.burger span::before,
+.burger span::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--ink);
+  position: relative;
+}
+.burger span::before,
+.burger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.burger span::before { top: -6px; }
+.burger span::after { top: 6px; }
+.menu { display: none; }
+.menu.open {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 64px 0 0;
+  z-index: 39;
+  background: var(--bg);
+  padding: 12px 24px 32px;
+}
+.menu a {
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 760px) {
+  .nav-links, .mail-btn.desk { display: none; }
+  .burger { display: flex; }
+}
 
-‹
-01 / 09
-›
-SWIPE
-Four stages, one operator.
-		01 Diagnose Audit the community — or the gap where one should be.
-		02 Architect Roles, channels, moderation and retention mechanics.
-		03 Launch Bots, servers and assets shipped for real traffic.
-		04 Operate Moderate, iterate, grow. The part most skip.
-About
-I’m @erthxn — Community Architect. I design Telegram and Discord infrastructure, ship engagement systems, and vibecode tools that actually hold up under growth. Building in public on Solana and TON.
-		intern
-		Telegram
-		Discord
-		community building
-		vibecoding
-		memecoins
-		solana
-		ton
-Let’s build the room.
-majek.erthxn@gmail.com
-Copy
-X
-Telegram
-Discord
-@erthxn
-Coffee
-↑
+.wrap { width: min(var(--wrap), calc(100% - 40px)); margin: 0 auto; }
+.hero { padding: 28px 0 72px; }
+.hero-grid { display: grid; gap: 36px; align-items: center; }
+@media (min-width: 880px) {
+  .hero { padding: 48px 0 96px; min-height: calc(100svh - 64px); }
+  .hero-grid {
+    grid-template-columns: minmax(300px, 480px) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 88px);
+  }
+}
+.portrait {
+  width: min(100%, 520px);
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--soft);
+}
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.kicker span {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero h1 {
+  font-size: clamp(2.15rem, 8.2vw, 4.6rem);
+  line-height: 0.98;
+  max-width: none;
+}
+@media (min-width: 880px) {
+  .hero h1 { max-width: 12ch; font-size: clamp(2.8rem, 4.6vw, 4.6rem); }
+}
+.hero h1 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+}
+.who {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+.who strong { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
+.who a { color: var(--muted); font-size: 1.05rem; }
+.who a:hover { color: var(--ink); }
 
+.block { padding: 72px 0; }
+.block h2 { font-size: clamp(1.7rem, 3vw, 2.15rem); }
+.lede { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+
+.stage { max-width: 440px; margin: 36px auto 0; }
+.deck {
+  position: relative;
+  aspect-ratio: 3 / 4.05;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+  cursor: grab;
+}
+.deck:active { cursor: grabbing; }
+.card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px -28px rgba(22, 21, 19, 0.45);
+  transition: transform 0.45s var(--ease), opacity 0.35s ease;
+}
+.deck:not(.ready) .card:nth-child(n + 2) { opacity: 0; }
+.media {
+  flex: 1;
+  min-height: 0;
+  background: #fff;
+  overflow: hidden;
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.media.shot img { object-position: top center; }
+.media.wide img { object-position: left center; }
+.media.close img { object-position: 62% 78%; }
+.media.mark { display: grid; place-items: center; background: #fff; }
+.info { position: relative; padding: 16px 18px 18px; background: #fff; }
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.idx {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.card h3 { margin-top: 4px; font-size: 1.35rem; }
+.card p { margin: 8px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.5; font-weight: 500; }
+.card .go {
+  display: inline-flex;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+}
+.card .go:hover { opacity: 0.6; }
+
+.deck-ui { margin-top: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.deck-row { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.count { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--muted); min-width: 64px; text-align: center; }
+.deck-row > button,
+.totop {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 22px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.deck-row > button:hover,
+.totop:hover { border-color: var(--ink); }
+.dots { display: flex; flex-wrap: wrap; gap: 2px; justify-content: center; max-width: 280px; }
+.dots button { width: 22px; height: 22px; display: grid; place-items: center; }
+.dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d5d2cb;
+  display: block;
+}
+.dots button.on i { background: var(--ink); }
+.hint { margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #9a968e; }
+
+.process { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.steps {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+@media (min-width: 800px) {
+  .steps { grid-template-columns: repeat(4, 1fr); }
+}
+.steps li {
+  padding: 22px 22px 8px 0;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 800px) {
+  .steps li { border-top: 0; padding: 0 28px 0 0; }
+  .steps li + li { padding-left: 28px; border-left: 1px solid var(--line); }
+}
+.steps .n {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.steps h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.steps p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+.bio {
+  max-width: 38rem;
+  margin: 18px 0 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.marquee {
+  margin-top: 32px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+}
+.marquee-track span { flex: none; white-space: nowrap; }
+.marquee .item { padding: 0 20px; font-size: 14px; color: var(--muted); }
+.marquee .slash { color: var(--ink); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+.mail-line {
+  margin-top: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+.mail-line a.addr {
+  font-size: clamp(1.35rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+.mail-line a.addr:hover { opacity: 0.65; }
+.copy {
+  flex: none;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.copy:hover { border-color: var(--ink); }
+.socials { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; }
+.socials a { color: var(--muted); font-size: 15px; }
+.socials a:hover { color: var(--ink); }
+
+footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.foot span { color: var(--muted); font-size: 14px; }
+.totop { color: var(--ink); }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 16px);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 13px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 50;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 520px) {
+  .wrap, .nav-in { width: min(var(--wrap), calc(100% - 32px)); }
+  .portrait { border-radius: 22px; }
+  .card { border-radius: 18px; }
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <svg class="star star-sm" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><line x1="50" y1="8" x2="50" y2="92"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(60 50 50)"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(120 50 50)"/></g></svg>
+      erthxn
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#work">Shipped</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#mail">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:4px">
+      <a class="mail-btn desk" href="mailto:majek.erthxn@gmail.com">Mail</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="menu">
+  <a href="#work" data-close>Shipped</a>
+  <a href="#process" data-close>Process</a>
+  <a href="#about" data-close>About</a>
+  <a href="#mail" data-close>Contact</a>
+  <a href="mailto:majek.erthxn@gmail.com" data-close>Mail</a>
+</div>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="portrait"><img src="web_assets/pfp.jpg" alt="Majek Ay"></div>
+      <div>
+        <div class="kicker">
+          <svg class="star star-md" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><line x1="50" y1="8" x2="50" y2="92"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(60 50 50)"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(120 50 50)"/></g></svg>
+          <span>Community Architect</span>
+        </div>
+        <h1>I’m an unhinged degen who architects the <em>best communities.</em></h1>
+        <div class="who"><strong>Majek Ay</strong><a href="https://x.com/erthxn" target="_blank" rel="noopener">@erthxn</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2>Shipped.</h2>
+      <p class="lede">Swipe the card.</p>
+      <div class="stage">
+        <div class="deck" id="deck" tabindex="0" aria-label="Shipped work. Swipe, or use the arrow keys.">
+          <article class="card"><div class="media shot"><img src="web_assets/spinmi.PNG" alt="" draggable="false"></div><div class="info"><div class="tag">Moderator</div><span class="idx">01</span><h3>SpinMi</h3><p>Create, render and receive Telegram animated coin emojis in private chat.</p><a class="go" href="https://t.me/spinmibot/open" target="_blank" rel="noopener">Open Mini App</a></div></article>
+          <article class="card"><div class="media wide"><img src="web_assets/migma_ai.PNG" alt="" draggable="false"></div><div class="info"><div class="tag">Community manager</div><span class="idx">02</span><h3>Migma AI</h3><p>Community manager at Migma. AI email that designs itself.</p><a class="go" href="https://migma.ai" target="_blank" rel="noopener">migma.ai</a></div></article>
+          <article class="card"><div class="media shot"><img src="web_assets/gifttrove.PNG" alt="" draggable="false"></div><div class="info"><div class="tag">Mini app</div><span class="idx">03</span><h3>GiftTrove</h3><p>Scout collectible gifts across Telegram, Fragment, MarketApp, and Thermos. React front, Python/Flask back.</p></div></article>
+          <article class="card"><div class="media"><img src="web_assets/chainsim.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Utility</div><span class="idx">04</span><h3>ChainSIM</h3><p>Floor tracker and digit estimator for the ChainSIM crowd.</p></div></article>
+          <article class="card"><div class="media"><img src="web_assets/pholio.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Build</div><span class="idx">05</span><h3>Pholio</h3><p>Portfolio tracker built with iMessage using Photon.</p><a class="go" href="https://x.com/photonhq" target="_blank" rel="noopener">See Photon</a></div></article>
+          <article class="card"><div class="media"><img src="web_assets/ulys.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Discord</div><span class="idx">06</span><h3>Ulys</h3><p>Most roles held in the Ulys Discord — do anything crypto with a prompt. Tester, spawn, no-gas rookie, tapped-in.</p><a class="go" href="https://discord.gg/ulysai" target="_blank" rel="noopener">Join the server</a></div></article>
+          <article class="card"><div class="media"><img src="web_assets/creditlink.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Ambassador</div><span class="idx">07</span><h3>CreditLink</h3><p>Ex-ambassador and Discord OG of CreditLink — on-chain credit analysis and scoring, backed by Four FORM.</p><a class="go" href="https://x.com/creditslink" target="_blank" rel="noopener">View on X</a></div></article>
+          <article class="card"><div class="media"><img src="web_assets/spinmi-emoji.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Emojis</div><span class="idx">08</span><h3>200+ SpinMi emojis</h3><p>Created to push SpinMi emoji use across memecoin community buybots.</p><a class="go" href="https://t.me/spinmiparthner" target="_blank" rel="noopener">@spinmiparthner</a></div></article>
+          <article class="card"><div class="media close"><img src="web_assets/amongus.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Certified</div><span class="idx">09</span><h3>Among Us</h3><p>Level 70.</p></div></article>
+          <article class="card"><div class="media mark"><svg class="star star-lg" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><line x1="50" y1="8" x2="50" y2="92"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(60 50 50)"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(120 50 50)"/></g></svg></div><div class="info"><div class="tag">Next</div><span class="idx">10</span><h3>Your project.</h3><p>Got something that needs a community holding up under real growth?</p><a class="go" href="mailto:majek.erthxn@gmail.com">Mail me</a></div></article>
+        </div>
+        <div class="deck-ui">
+          <div class="deck-row">
+            <button type="button" data-prev aria-label="Previous card">‹</button>
+            <p class="count" id="count">01 / 10</p>
+            <button type="button" data-next aria-label="Next card">›</button>
+          </div>
+          <div class="dots" id="dots"></div>
+          <p class="hint">Swipe</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="block process" id="process">
+    <div class="wrap">
+      <h2>Four stages, one operator.</h2>
+      <ol class="steps">
+        <li><span class="n">01</span><h3>Diagnose</h3><p>Audit the community — or the gap where one should be.</p></li>
+        <li><span class="n">02</span><h3>Architect</h3><p>Roles, channels, moderation and retention mechanics.</p></li>
+        <li><span class="n">03</span><h3>Launch</h3><p>Bots, servers and assets shipped for real traffic.</p></li>
+        <li><span class="n">04</span><h3>Operate</h3><p>Moderate, iterate, grow. The part most skip.</p></li>
+      </ol>
+    </div>
+  </section>
+  <section class="block" id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <p class="bio">I’m @erthxn — Community Architect. I design Telegram and Discord infrastructure, ship engagement systems, and vibecode tools that actually hold up under growth. Building in public on Solana and TON.</p>
+      <div class="marquee" aria-hidden="true"><div class="marquee-track" id="mq"></div></div>
+    </div>
+  </section>
+  <section class="block" id="mail" style="padding-top:0">
+    <div class="wrap">
+      <h2>Let’s build the room.</h2>
+      <div class="mail-line">
+        <a class="addr" href="mailto:majek.erthxn@gmail.com">majek.erthxn@gmail.com</a>
+        <button class="copy" type="button" id="copy">Copy</button>
+      </div>
+      <div class="socials">
+        <a href="https://x.com/erthxn" target="_blank" rel="noopener">X</a>
+        <a href="https://t.me/erthxn" target="_blank" rel="noopener">Telegram</a>
+        <a href="http://discordapp.com/users/1383754286558875678" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>@erthxn</span>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="https://app.flipcash.com/tip/92453abd-e732-4ce1-92e8-ec82ffc5d22f" target="_blank" rel="noopener">Coffee</a>
+      <button class="totop" type="button" id="totop" aria-label="Back to top">↑</button>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+  const tags = ["intern","Telegram","Discord","community building","vibecoding","memecoins","solana","ton"];
+  const unit = tags.map(t => `<span class="item">${t}</span><span class="slash">/</span>`).join("");
+  document.getElementById("mq").innerHTML = `<span>${unit}</span><span>${unit}</span>`;
+
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("menu");
+  burger.addEventListener("click", () => {
+    const open = !menu.classList.contains("open");
+    menu.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("nav-open", open);
+  });
+  menu.querySelectorAll("[data-close]").forEach(a => a.addEventListener("click", () => {
+    menu.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+  }));
+
+  const deck = document.getElementById("deck");
+  const countEl = document.getElementById("count");
+  const dotsWrap = document.getElementById("dots");
+  const cards = [...deck.querySelectorAll(".card")];
+  const N = cards.length;
+  let cur = 0, busy = false, suppressClick = false, drag = null;
+  const pad = n => String(n).padStart(2, "0");
+  const dots = cards.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = "<i></i>";
+    b.setAttribute("aria-label", "Card " + (i + 1));
+    b.addEventListener("click", () => jumpTo(i));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+  function place(c, d, instant) {
+    c.style.transition = instant ? "none" : "";
+    c.style.zIndex = String(30 - d);
+    c.style.opacity = d > 2 ? "0" : "1";
+    c.style.pointerEvents = d === 0 ? "auto" : "none";
+    c.style.transform = d === 0 ? "translate3d(0,0,0)" : `translate3d(0,${(-d * 12).toFixed(1)}px,0) scale(${(1 - d * 0.042).toFixed(3)})`;
+    if (instant) void c.offsetHeight;
+  }
+  function paint() {
+    countEl.textContent = `${pad(cur + 1)} / ${pad(N)}`;
+    dots.forEach((d, i) => d.classList.toggle("on", i === cur));
+  }
+  function settle() { paint(); setTimeout(() => { busy = false; }, 460); }
+  function advance(from) {
+    const nextCur = (cur + 1) % N;
+    cards.forEach((c, i) => place(c, (i - nextCur + N) % N, c === from));
+    requestAnimationFrame(() => { from.style.transition = ""; });
+    cur = nextCur;
+    settle();
+  }
+  function next() {
+    if (busy) return;
+    busy = true;
+    const top = cards[cur];
+    top.style.zIndex = "40";
+    top.style.transition = "";
+    top.style.transform = "translate3d(-115%,0,0) rotate(-7deg)";
+    setTimeout(() => advance(top), 260);
+  }
+  function prev() {
+    if (busy) return;
+    busy = true;
+    const nextCur = (cur - 1 + N) % N;
+    const enter = cards[nextCur];
+    enter.style.transition = "none";
+    enter.style.zIndex = "45";
+    enter.style.opacity = "1";
+    enter.style.pointerEvents = "auto";
+    enter.style.transform = "translate3d(-115%,0,0) rotate(-7deg)";
+    void enter.offsetHeight;
+    enter.style.transition = "";
+    enter.style.transform = "translate3d(0,0,0)";
+    cards.forEach((c, i) => { if (c !== enter) place(c, (i - nextCur + N) % N, false); });
+    cur = nextCur;
+    settle();
+  }
+  function jumpTo(i) {
+    if (busy || i === cur) return;
+    busy = true;
+    cards.forEach((c, j) => place(c, (j - i + N) % N, false));
+    cur = i;
+    settle();
+  }
+  function resetStack() { cards.forEach((c, i) => place(c, (i - cur + N) % N, false)); }
+  cards.forEach((c, i) => place(c, i, true));
+  requestAnimationFrame(() => { cards.forEach(c => { c.style.transition = ""; }); deck.classList.add("ready"); });
+  paint();
+  document.querySelector("[data-prev]").addEventListener("click", prev);
+  document.querySelector("[data-next]").addEventListener("click", next);
+  deck.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+  });
+  deck.addEventListener("pointerdown", e => {
+    if (busy) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    if (e.target.closest("a")) return;
+    drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: 0, locked: false };
+  });
+  deck.addEventListener("pointermove", e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x0;
+    const dy = e.clientY - drag.y0;
+    drag.dx = dx;
+    if (!drag.locked) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      if (Math.abs(dy) > Math.abs(dx)) { drag = null; return; }
+      drag.locked = true;
+      try { deck.setPointerCapture(e.pointerId); } catch {}
+    }
+    const top = cards[cur];
+    const prevCard = cards[(cur - 1 + N) % N];
+    if (dx <= 0) {
+      place(prevCard, (cards.indexOf(prevCard) - cur + N) % N, true);
+      top.style.transition = "none";
+      top.style.zIndex = "40";
+      top.style.transform = `translate3d(${dx}px,0,0) rotate(${(dx * 0.04).toFixed(2)}deg)`;
+    } else {
+      top.style.transition = "none";
+      top.style.transform = "translate3d(0,0,0)";
+      const w = deck.offsetWidth || 1;
+      prevCard.style.transition = "none";
+      prevCard.style.zIndex = "45";
+      prevCard.style.opacity = "1";
+      prevCard.style.pointerEvents = "none";
+      prevCard.style.transform = `translate3d(${Math.min(0, -w + dx)}px,0,0)`;
+    }
+  });
+  function endDrag(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const d = drag; drag = null;
+    if (!d.locked) return;
+    suppressClick = true;
+    const top = cards[cur];
+    if (d.dx < -48) {
+      busy = true;
+      top.style.zIndex = "40";
+      top.style.transition = "";
+      top.style.transform = "translate3d(-115%,0,0) rotate(-8deg)";
+      setTimeout(() => advance(top), 240);
+      return;
+    }
+    if (d.dx > 48) {
+      const enter = cards[(cur - 1 + N) % N];
+      busy = true;
+      const nextCur = (cur - 1 + N) % N;
+      enter.style.transition = "";
+      enter.style.zIndex = "45";
+      enter.style.opacity = "1";
+      enter.style.pointerEvents = "auto";
+      enter.style.transform = "translate3d(0,0,0)";
+      cards.forEach((c, i) => { if (c !== enter) place(c, (i - nextCur + N) % N, false); });
+      cur = nextCur;
+      settle();
+      return;
+    }
+    resetStack();
+  }
+  deck.addEventListener("pointerup", endDrag);
+  deck.addEventListener("pointercancel", endDrag);
+  deck.addEventListener("click", e => {
+    if (!suppressClick) return;
+    e.preventDefault(); e.stopPropagation();
+    suppressClick = false;
+  }, true);
+
+  const toast = document.getElementById("toast");
+  let toastT;
+  document.getElementById("copy").addEventListener("click", async () => {
+    const email = "majek.erthxn@gmail.com";
+    try { await navigator.clipboard.writeText(email); toast.textContent = "Email copied"; }
+    catch { toast.textContent = email; }
+    toast.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(() => toast.classList.remove("show"), 2200);
+  });
+  document.getElementById("totop").addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+  const links = [...document.querySelectorAll(".nav-links a")];
+  const spy = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+    });
+  }, { rootMargin: "-40% 0px -50% 0px", threshold: 0.15 });
+  ["work","process","about","mail"].forEach(id => spy.observe(document.getElementById(id)));
+})();
+</script>
+</body>
+</html>
