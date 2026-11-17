@@ -426,9 +426,16 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
   .portrait { border-radius: 22px; }
   .card { border-radius: 18px; }
 }
+.splash{position:fixed;inset:0;background:linear-gradient(160deg,#041016,#0a2a32,#061820);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .7s cubic-bezier(.22,1,.36,1),visibility .7s;overflow:hidden}
+.splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.splash-img{width:min(420px,78vw);height:auto;border-radius:28px;filter:drop-shadow(0 20px 60px rgba(0,255,200,.25));animation:slimeFloat 3.2s ease-in-out infinite}
+@keyframes slimeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.splash-title{font-weight:700;font-size:clamp(1.4rem,4vw,2rem);color:#e0fff8;text-shadow:0 0 20px rgba(0,255,200,.4)}
+.drip{position:absolute;background:#00f0c8;border-radius:50%;opacity:.7;animation:dripFall linear infinite}
+@keyframes dripFall{0%{transform:translateY(-40px);opacity:0}15%{opacity:.8}100%{transform:translateY(110vh);opacity:0}}
 </style>
 </head>
-<body>
+<body><div class="splash" id="splash"><div class="drip" style="left:12%;width:14px;height:28px;animation-duration:2.8s"></div><div class="drip" style="left:45%;width:16px;height:32px;animation-duration:2.5s"></div><div class="drip" style="left:78%;width:18px;height:34px;animation-duration:2.9s"></div><img class="splash-img" src="web_assets/slime.jpg" alt="Slime"><div class="splash-title">interncodes</div></div>
 <header class="nav">
   <div class="nav-in">
     <a class="brand" href="#top">
@@ -457,7 +464,7 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
 <main id="top">
   <section class="hero">
     <div class="wrap hero-grid">
-      <div class="portrait"><img src="web_assets/pfp.jpg" alt="Majek Ay"></div>
+      <div class="portrait"><img src="web_assets/slime.jpg" alt="Majek Ay"></div>
       <div>
         <div class="kicker">
           <svg class="star star-md" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><line x1="50" y1="8" x2="50" y2="92"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(60 50 50)"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(120 50 50)"/></g></svg>
@@ -723,5 +730,5 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
   ["work","process","about","mail"].forEach(id => spy.observe(document.getElementById(id)));
 })();
 </script>
-</body>
+<script>(function(){const s=document.getElementById("splash");if(!s)return;const h=()=>s.classList.add("hide");setTimeout(h,2600);s.addEventListener("click",h);s.addEventListener("touchstart",h,{passive:true})})();</script></body>
 </html>
