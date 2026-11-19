@@ -315,35 +315,6 @@ section[id] { scroll-margin-top: 84px; }
 .dots button.on i { background: var(--ink); }
 .hint { margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #9a968e; }
 
-.process { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.steps {
-  list-style: none;
-  margin: 32px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 0;
-}
-@media (min-width: 800px) {
-  .steps { grid-template-columns: repeat(4, 1fr); }
-}
-.steps li {
-  padding: 22px 22px 8px 0;
-  border-top: 1px solid var(--line);
-}
-@media (min-width: 800px) {
-  .steps li { border-top: 0; padding: 0 28px 0 0; }
-  .steps li + li { padding-left: 28px; border-left: 1px solid var(--line); }
-}
-.steps .n {
-  display: block;
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  font-style: italic;
-  margin-bottom: 10px;
-}
-.steps h3 { font-size: 1.05rem; margin-bottom: 8px; }
-.steps p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
-
 .bio {
   max-width: 38rem;
   margin: 18px 0 0;
@@ -399,10 +370,9 @@ section[id] { scroll-margin-top: 84px; }
 .socials a { color: var(--muted); font-size: 15px; }
 .socials a:hover { color: var(--ink); }
 
-footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
-.foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.foot span { color: var(--muted); font-size: 14px; }
 .totop { color: var(--ink); }
+.socials { align-items: center; }
+.socials .totop { margin-left: auto; }
 
 .toast {
   position: fixed;
@@ -437,7 +407,6 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
     </a>
     <nav class="nav-links" aria-label="Main">
       <a href="#work">Shipped</a>
-      <a href="#process">Process</a>
       <a href="#about">About</a>
       <a href="#mail">Contact</a>
     </nav>
@@ -449,7 +418,6 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
 </header>
 <div class="menu" id="menu">
   <a href="#work" data-close>Shipped</a>
-  <a href="#process" data-close>Process</a>
   <a href="#about" data-close>About</a>
   <a href="#mail" data-close>Contact</a>
   <a href="mailto:majek.erthxn@gmail.com" data-close>Mail</a>
@@ -485,29 +453,19 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
           <article class="card"><div class="media"><img src="web_assets/creditlink.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Ambassador</div><span class="idx">09</span><h3>CreditLink</h3><p>Ex-ambassador and Discord OG of CreditLink — on-chain credit analysis and scoring, backed by Four FORM.</p><a class="go" href="https://x.com/creditslink" target="_blank" rel="noopener">View on X</a></div></article>
           <article class="card"><div class="media"><img src="web_assets/spinmi-emoji.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Emojis</div><span class="idx">10</span><h3>SpinMi Emojis</h3><p>200+ custom animated coin emojis created and pushed across memecoin communities.</p></div></article>
           <article class="card"><div class="media"><img src="web_assets/amongus.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Build</div><span class="idx">11</span><h3>Among Us</h3><p>Community tools and vibes for the Among Us crowd on Telegram.</p></div></article>
-          <article class="card"><div class="media mark"><img src="web_assets/majek.PNG" alt="" draggable="false"></div><div class="info"><div class="tag">Brand</div><span class="idx">12</span><h3>Personal</h3><p>The brand, the site, the ongoing build in public.</p><a class="go" href="https://interncodes.xyz" target="_blank" rel="noopener">interncodes.xyz</a></div></article>
+          <article class="card"><div class="media"><img src="web_assets/spinmi-emoji.jpg" alt="" draggable="false"></div><div class="info"><div class="tag">Bot</div><span class="idx">12</span><h3>SpinMi Earn</h3><p>The SpinMi Earn Telegram bot — @spinmiebot.</p><a class="go" href="https://t.me/spinmiebot" target="_blank" rel="noopener">Open @spinmiebot</a></div></article>
+          <article class="card"><div class="media mark"><svg class="star star-lg" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><line x1="50" y1="8" x2="50" y2="92"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(60 50 50)"/><line x1="50" y1="8" x2="50" y2="92" transform="rotate(120 50 50)"/></g></svg></div><div class="info"><div class="tag">Next</div><span class="idx">13</span><h3>Your project.</h3><p>Got something that needs a community holding up under real growth?</p><a class="go" href="mailto:majek.erthxn@gmail.com">Mail me</a></div></article>
         </div>
         <div class="deck-ui">
           <div class="deck-row">
             <button id="prev" aria-label="Previous">‹</button>
-            <div class="count" id="count">01 / 12</div>
+            <div class="count" id="count">01 / 13</div>
             <button id="next" aria-label="Next">›</button>
           </div>
           <div class="dots" id="dots"></div>
           <p class="hint">Swipe</p>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="block process" id="process">
-    <div class="wrap">
-      <h2>Four stages, one operator.</h2>
-      <ol class="steps">
-        <li><span class="n">01</span><h3>Diagnose</h3><p>Map the current Telegram and Discord setup. What’s leaking attention, what’s missing, what will break at 10×.</p></li>
-        <li><span class="n">02</span><h3>Architect</h3><p>Design the channels, roles, bots, and rituals that match the project’s actual growth path.</p></li>
-        <li><span class="n">03</span><h3>Launch</h3><p>Ship the system, staff it, and run the first cycles so it doesn’t collapse on day one.</p></li>
-        <li><span class="n">04</span><h3>Operate</h3><p>Stay in the room. Moderate, iterate, and keep the infrastructure from rotting.</p></li>
-      </ol>
     </div>
   </section>
   <section class="block" id="about">
@@ -525,18 +483,13 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
       </div>
       <div class="socials">
         <a href="https://x.com/erthxn" target="_blank" rel="noopener">X</a>
-        <a href="https://t.me/erthxn" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://www.tiktok.com/@erthxn_" target="_blank" rel="noopener">TikTok</a>
         <a href="http://discordapp.com/users/1383754286558875678" target="_blank" rel="noopener">Discord</a>
+        <button class="totop" id="totop" aria-label="Back to top">↑</button>
       </div>
     </div>
   </section>
 </main>
-<footer>
-  <div class="wrap foot">
-    <span>Majek Ay · erthxn</span>
-    <button class="totop" id="totop" aria-label="Back to top">↑</button>
-  </div>
-</footer>
 <div class="toast" id="toast"></div>
 <script>
 (function(){
@@ -720,7 +673,7 @@ footer { border-top: 1px solid var(--line); padding: 22px 0 28px; }
       links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
     });
   }, { rootMargin: "-40% 0px -50% 0px", threshold: 0.15 });
-  ["work","process","about","mail"].forEach(id => spy.observe(document.getElementById(id)));
+  ["work","about","mail"].forEach(id => spy.observe(document.getElementById(id)));
 })();
 </script>
 </body>
